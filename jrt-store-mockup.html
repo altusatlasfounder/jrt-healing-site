@@ -181,6 +181,24 @@
     display: flex; align-items: center; gap: 12px;
     flex-wrap: wrap;
   }
+  .filter-pills-wrap {
+    position: relative; flex: 1; min-width: 0;
+  }
+  .filter-pills-wrap::before,
+  .filter-pills-wrap::after {
+    content: ''; position: absolute; top: 0; bottom: 0; width: 32px;
+    z-index: 2; pointer-events: none; opacity: 0; transition: opacity 0.3s;
+  }
+  .filter-pills-wrap::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(254,252,246,0.97) 40%, transparent);
+  }
+  .filter-pills-wrap::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(254,252,246,0.97) 40%, transparent);
+  }
+  .filter-pills-wrap.fade-left::before { opacity: 1; }
+  .filter-pills-wrap.fade-right::after { opacity: 1; }
   .filter-pills {
     display: flex; gap: 8px; flex-wrap: wrap; flex: 1;
   }
@@ -680,6 +698,7 @@
     .form-row { flex-direction: column; }
     .store-hero { min-height: auto; padding: 20px 16px; }
     .filter-bar { flex-direction: column; align-items: stretch; gap: 10px; padding: 10px 16px; overflow: hidden; max-width: 100vw; }
+    .filter-pills-wrap { width: 100%; }
     .filter-pills { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; gap: 6px; padding-bottom: 6px; max-width: 100%; }
     .filter-pill { padding: 6px 14px; font-size: 12px; flex-shrink: 0; }
     .search-box { width: 100%; }
@@ -699,7 +718,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-brand" style="text-decoration: none;">
+  <a href="jrt-website-mockup-v2.html" class="nav-brand" style="text-decoration: none;">
     <div class="nav-logo">仁</div>
     <div class="nav-text-group">
       <div class="nav-name">Ji Ren Tang Healing</div>
@@ -708,13 +727,13 @@
   </a>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="index.html#services">Services</a></li>
-      <li><a href="index.html#our-name">Our Story</a></li>
-      <li><a href="index.html#about-us">About</a></li>
-      <li><a href="index.html#testimonials">Reviews</a></li>
+      <li><a href="jrt-website-mockup-v2.html">Home</a></li>
+      <li><a href="jrt-website-mockup-v2.html#services">Services</a></li>
+      <li><a href="jrt-website-mockup-v2.html#our-name">Our Story</a></li>
+      <li><a href="jrt-website-mockup-v2.html#about-us">About</a></li>
+      <li><a href="jrt-website-mockup-v2.html#testimonials">Reviews</a></li>
       <li><a href="#" class="active" onclick="showShop(); return false;">Shop Herbs</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="jrt-website-mockup-v2.html#contact">Contact</a></li>
       <li><a href="jrt-booking-mockup.html" class="nav-cta">Book a Session</a></li>
     </ul>
     <button class="cart-btn" onclick="toggleCart()" aria-label="Shopping cart">
@@ -727,12 +746,12 @@
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="index.html">Home</a>
-  <a href="index.html#services">Services</a>
-  <a href="index.html#our-name">Our Story</a>
-  <a href="index.html#about-us">About</a>
-  <a href="index.html#testimonials">Reviews</a>
-  <a href="index.html#about">About</a>
+  <a href="jrt-website-mockup-v2.html">Home</a>
+  <a href="jrt-website-mockup-v2.html#services">Services</a>
+  <a href="jrt-website-mockup-v2.html#our-name">Our Story</a>
+  <a href="jrt-website-mockup-v2.html#about-us">About</a>
+  <a href="jrt-website-mockup-v2.html#testimonials">Reviews</a>
+  <a href="jrt-website-mockup-v2.html#about">About</a>
   <a href="#" style="color:var(--primary);font-weight:600;" onclick="showShop(); toggleMobile(); return false;">Shop</a>
   <a href="jrt-booking-mockup.html">Book Now</a>
 </div>
@@ -748,16 +767,18 @@
 
 <!-- FILTER BAR -->
 <div class="filter-bar" id="filterBar">
-  <div class="filter-pills">
-    <button class="filter-pill active" data-cat="all">All Products</button>
-    <button class="filter-pill" data-cat="classical">Classical Formulas</button>
-    <button class="filter-pill" data-cat="single">Single Herbs</button>
-    <button class="filter-pill" data-cat="blend">Condition Blends</button>
-    <button class="filter-pill" data-cat="tea">Herbal Teas</button>
-    <button class="filter-pill" data-cat="topical">Topical Products</button>
+  <div class="filter-pills-wrap" id="pillsWrap">
+    <div class="filter-pills" id="filterPills">
+      <button class="filter-pill active" data-cat="all">All Products</button>
+      <button class="filter-pill" data-cat="classical">Classical Formulas</button>
+      <button class="filter-pill" data-cat="single">Single Herbs</button>
+      <button class="filter-pill" data-cat="blend">Condition Blends</button>
+      <button class="filter-pill" data-cat="tea">Herbal Teas</button>
+      <button class="filter-pill" data-cat="topical">Topical Products</button>
+    </div>
   </div>
   <div class="search-box">
-    <input type="text" id="searchInput" placeholder="Try &quot;stress&quot;, &quot;knee pain&quot;, &quot;ginger&quot;, &quot;tea&quot;..." aria-label="Search products">
+    <input type="text" id="searchInput" placeholder="Search by herb, ailment, ingredient..." aria-label="Search products">
   </div>
 </div>
 
@@ -893,8 +914,8 @@
     </div>
     <div class="footer-col">
       <h4>Quick Links</h4>
-      <a href="index.html">Home</a>
-      <a href="index.html#services">Services</a>
+      <a href="jrt-website-mockup-v2.html">Home</a>
+      <a href="jrt-website-mockup-v2.html#services">Services</a>
       <a href="jrt-booking-mockup.html">Book Appointment</a>
       <a href="#">Herbal Store</a>
     </div>
@@ -1277,6 +1298,22 @@ function toggleMobile() {
 /* ── INIT ── */
 renderProducts();
 updateCartUI();
+
+/* ── SCROLL FADE INDICATORS for category pills ── */
+(function(){
+  var wrap = document.getElementById('pillsWrap');
+  var pills = document.getElementById('filterPills');
+  if (!wrap || !pills) return;
+  function updateFades() {
+    var sl = pills.scrollLeft, sw = pills.scrollWidth, cw = pills.clientWidth;
+    wrap.classList.toggle('fade-left', sl > 4);
+    wrap.classList.toggle('fade-right', sl + cw < sw - 4);
+  }
+  pills.addEventListener('scroll', updateFades);
+  window.addEventListener('resize', updateFades);
+  // initial check after layout settles
+  setTimeout(updateFades, 100);
+})();
 </script>
 </body>
 </html>
