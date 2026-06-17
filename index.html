@@ -177,8 +177,8 @@
      ═══════════════════════════════════════ */
   .hero-centered {
     position: relative;
-    height: 100vh;
-    max-height: 100vh;
+    height: calc(100vh - 158px);
+    max-height: calc(100vh - 158px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1261,6 +1261,8 @@
   /* ── Hero-centered mobile breakpoints ── */
   @media (max-width: 900px) {
     .hero-centered {
+      height: auto;
+      max-height: none;
       min-height: 100svh;
       align-items: flex-start;
       padding-top: 40px;
