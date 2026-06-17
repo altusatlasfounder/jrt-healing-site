@@ -1,0 +1,2084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ji Ren Tang Healing — Where Compassion Meets Restoration</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;600;700&display=swap');
+
+  :root {
+    --primary: #2D6A4F;
+    --primary-dark: #1B4332;
+    --secondary: #52B788;
+    --accent: #95D5B2;
+    --light: #D8F3DC;
+    --cream: #FEFCF6;
+    --warm: #F5E6D3;
+    --gold: #C9A96E;
+    --gold-light: #E8D5B0;
+    --text-dark: #1a1a1a;
+    --text-body: #3d3d3d;
+    --text-muted: #6b6b6b;
+    /* Hero text shadows from hero-alt */
+    --hero-shadow-chinese: 4px 6px 20px rgba(0,0,0,0.85), 0 0 60px rgba(0,0,0,0.5), 0 0 120px rgba(0,0,0,0.3), 0 0 80px rgba(201,169,110,0.2);
+    --hero-shadow-text: 2px 3px 8px rgba(0,0,0,1), 0 0 20px rgba(0,0,0,0.9), 0 0 40px rgba(0,0,0,0.7), 0 0 80px rgba(0,0,0,0.4);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 0px; }
+  @media (max-width: 900px) { html { scroll-padding-top: 40px; } }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-body);
+    background: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(254, 252, 246, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(45, 106, 79, 0.1);
+    padding: 0 clamp(16px, 3vw, 40px);
+    height: 72px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: nowrap;
+    overflow: hidden;
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: clamp(8px, 1vw, 14px);
+    flex-shrink: 1;
+    min-width: 0;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .nav-logo {
+    width: 44px; height: 44px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold-light);
+    font-family: 'Noto Serif SC', serif;
+    font-size: 20px; font-weight: 700;
+  }
+  .nav-text-group {
+    display: flex; flex-direction: column; justify-content: center;
+    min-width: 0;
+  }
+  .nav-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.2vw, 28px); font-weight: 700;
+    color: var(--primary-dark);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    line-height: 1.1;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+  .nav-address {
+    font-size: clamp(10px, 1.2vw, 13px);
+    color: var(--text-body);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    flex-shrink: 1;
+    min-width: 0;
+    margin-top: 5px;
+    line-height: 1;
+  }
+  .nav-links {
+    display: flex; align-items: center; gap: clamp(12px, 2.5vw, 32px);
+    list-style: none;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-size: clamp(11px, 1.1vw, 14px); font-weight: 500;
+    color: var(--text-body);
+    letter-spacing: 0.5px;
+    transition: color 0.3s;
+    white-space: nowrap;
+  }
+  .nav-links a:hover { color: var(--primary); }
+  .nav-cta {
+    background: var(--primary) !important;
+    color: white !important;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-weight: 500 !important;
+    transition: background 0.3s !important;
+  }
+  .nav-cta:hover { background: var(--primary-dark) !important; }
+  .cart-btn {
+    position: relative; cursor: pointer;
+    background: none; border: none;
+    font-size: 22px; color: var(--primary-dark);
+    padding: 6px; flex-shrink: 0;
+  }
+  .cart-badge {
+    position: absolute; top: -4px; right: -6px;
+    background: var(--gold); color: white;
+    font-size: 10px; font-weight: 700;
+    width: 18px; height: 18px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .cart-badge.visible { opacity: 1; }
+
+  /* ── TRUST BAR ── sits directly under fixed nav */
+  .trust-bar {
+    margin-top: 72px;
+    background: var(--primary-dark);
+    padding: 28px 60px;
+    display: flex; justify-content: center; gap: 0;
+    flex-wrap: nowrap;
+    position: relative;
+    overflow: hidden;
+  }
+  .trust-bar::before {
+    content: '仁';
+    position: absolute; right: 40px; top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Noto Serif SC', serif;
+    font-size: 160px; font-weight: 700;
+    color: white; opacity: 0.04;
+    line-height: 1;
+  }
+  .trust-item {
+    text-align: center; color: white;
+    padding: 0 52px;
+    border-right: 1px solid rgba(255,255,255,0.12);
+    flex-shrink: 1;
+    min-width: 0;
+    white-space: nowrap;
+  }
+  .trust-item:last-child { border-right: none; }
+  .trust-item .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 3.5vw, 42px); font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+  .trust-item .label {
+    font-size: clamp(8px, 1vw, 12px); letter-spacing: clamp(1px, 0.2vw, 2px);
+    text-transform: uppercase;
+    opacity: 0.75; margin-top: 6px;
+  }
+
+  /* ═══════════════════════════════════════
+     HERO — Centered text, slideshow right
+     (from jrt-hero-alt.html Variant A)
+     ═══════════════════════════════════════ */
+  .hero-centered {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background:
+      linear-gradient(to top right, rgba(201,169,110,0.28) 0%, rgba(201,169,110,0.18) 20%, rgba(201,169,110,0.08) 40%, rgba(201,169,110,0.02) 55%, transparent 70%),
+      linear-gradient(160deg, #1B4332 0%, #2D6A4F 40%, #1B4332 80%, #0f2b1f 100%);
+    box-shadow: none;
+  }
+
+  /* Subtle texture on green */
+  .hero-centered::before {
+    content: '';
+    position: absolute; inset: 0;
+    opacity: 0.04;
+    background-image: repeating-conic-gradient(rgba(201,169,110,0.3) 0% 25%, transparent 0% 50%);
+    background-size: 3px 3px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Slideshow covers full width but fades out on the left */
+  .hero-centered .slide-panel {
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 100%;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .hero-centered .slide-panel img {
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 70%; height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    animation: splitFade 24s infinite;
+  }
+  /* Position each image so the interesting middle is visible, top/bottom cropped.
+     Herbs (#2) and needle (#3) flipped horizontally to push busy detail away from hero text. */
+  .hero-centered .slide-panel img:nth-child(1) { animation-delay: 0s; object-position: 70% 45%; }
+  .hero-centered .slide-panel img:nth-child(2) { animation-delay: 6s; object-position: 65% 50%; transform: scaleX(-1); }
+  .hero-centered .slide-panel img:nth-child(3) { animation-delay: 12s; object-position: 70% 45%; }
+  .hero-centered .slide-panel img:nth-child(4) { animation-delay: 18s; object-position: 60% 72%; }
+
+  /* Seamless blend — green covers images' left edges completely, then
+     feathers out over a wide zone. The solid zone extends past 30% (where
+     the 70%-wide images begin) so no image edge is ever visible. */
+  .hero-centered .slide-panel::after {
+    content: '';
+    position: absolute; inset: 0; z-index: 1;
+    background:
+      linear-gradient(to right,
+        #1B4332 0%,
+        #1B4332 32%,
+        rgba(27,67,50,0.97) 36%,
+        rgba(27,67,50,0.92) 40%,
+        rgba(27,67,50,0.84) 44%,
+        rgba(27,67,50,0.74) 48%,
+        rgba(27,67,50,0.62) 52%,
+        rgba(27,67,50,0.48) 56%,
+        rgba(27,67,50,0.34) 60%,
+        rgba(27,67,50,0.22) 64%,
+        rgba(27,67,50,0.12) 69%,
+        rgba(27,67,50,0.05) 75%,
+        rgba(27,67,50,0.01) 82%,
+        transparent 90%
+      ),
+      linear-gradient(to bottom, transparent 78%, var(--cream) 100%);
+    pointer-events: none;
+  }
+
+  /* Gold gleam — diagonal LINEAR band from bottom-left of green up/right */
+  .hero-centered .gold-gleam {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(315deg,
+      transparent 0%,
+      rgba(201,169,110,0.04) 20%,
+      rgba(201,169,110,0.14) 30%,
+      rgba(201,169,110,0.20) 38%,
+      rgba(201,169,110,0.14) 46%,
+      rgba(201,169,110,0.05) 55%,
+      transparent 65%
+    );
+  }
+
+  /* Gold line at hero base */
+  .hero-centered::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--gold), var(--gold-light), var(--gold));
+    z-index: 10;
+  }
+
+  @keyframes splitFade {
+    0% { opacity: 0; }
+    4% { opacity: 1; }
+    25% { opacity: 1; }
+    29% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+
+  /* Centered text content — sits above slideshow with dark radial backing */
+  .hero-centered .center-content {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    padding: 72px 60px;
+    max-width: 860px;
+    background: radial-gradient(ellipse at center,
+      rgba(27,67,50,0.65) 0%,
+      rgba(27,67,50,0.45) 25%,
+      rgba(27,67,50,0.25) 45%,
+      rgba(27,67,50,0.1) 60%,
+      rgba(27,67,50,0.03) 75%,
+      transparent 100%);
+  }
+
+  /* ── All hero text gets the same dark shadow ── */
+  .hero-centered .hero-chinese {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 150px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 24px;
+    line-height: 1.05;
+    margin-bottom: 8px;
+    text-shadow: var(--hero-shadow-chinese);
+  }
+
+  .hero-centered .hero-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    font-weight: 700;
+    color: rgba(254,252,246,0.92);
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    text-shadow: var(--hero-shadow-text);
+  }
+
+  .hero-centered .hero-rule {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0 auto 28px;
+    opacity: 0.6;
+  }
+
+  .hero-centered .hero-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: rgba(254,252,246,0.88);
+    margin-bottom: 44px;
+    text-shadow: var(--hero-shadow-text);
+  }
+  .hero-centered .hero-desc .services-line {
+    color: var(--gold-light);
+    font-size: 24px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    text-shadow: var(--hero-shadow-text);
+  }
+
+  .hero-centered .hero-cta {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--primary-dark);
+    padding: 20px 52px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 24px rgba(201,169,110,0.4);
+    transition: all 0.3s;
+  }
+  .hero-centered .hero-cta:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(201,169,110,0.5);
+  }
+
+  .hero-centered .hero-explore {
+    display: block;
+    margin-top: 18px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    text-decoration: none;
+    transition: all 0.3s;
+    text-shadow: var(--hero-shadow-text);
+  }
+  .hero-centered .hero-explore:hover {
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  /* ── Ghost watermark 吉仁堂 — vertical, centered in the green, overflowing top/bottom ── */
+  .hero-centered .ghost-char {
+    position: absolute;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 320px;
+    font-weight: 700;
+    color: rgba(201,169,110,0.045);
+    left: 25%;
+    top: 73%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 3;
+    writing-mode: vertical-rl;
+    white-space: nowrap;
+    letter-spacing: 40px;
+    line-height: 1;
+    -webkit-text-stroke: none;
+    text-shadow: none;
+    height: 140%;
+  }
+
+  /* ── OWNER BAR — prominent strip below trust-bar ── */
+  .owner-bar {
+    background: var(--cream);
+    border-bottom: 1px solid rgba(45,106,79,0.1);
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .owner-bar::after {
+    content: '仁';
+    position: absolute; right: 60px; top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Noto Serif SC', serif;
+    font-size: 200px; font-weight: 700;
+    color: var(--primary); opacity: 0.04;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .owner-photo-wrap {
+    width: 220px;
+    height: 280px;
+    flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .owner-photo-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+  .owner-photo-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 60px;
+    background: linear-gradient(to right, transparent, var(--cream));
+  }
+  .owner-bar-info {
+    padding: 36px 60px 36px 36px;
+    flex: 1;
+  }
+  .owner-bar-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .owner-bar-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px; font-weight: 700;
+    color: var(--primary-dark);
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .owner-bar-title {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+  .owner-bar-badges {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .owner-bar-badge {
+    display: inline-block;
+    background: var(--light);
+    color: var(--primary);
+    font-size: 11px; font-weight: 600;
+    padding: 5px 14px; border-radius: 20px;
+    letter-spacing: 0.4px;
+    border: 1px solid rgba(45,106,79,0.15);
+  }
+
+  /* ── ABOUT US SECTION ── */
+  .about-us {
+    background: var(--cream);
+    padding: 80px 60px;
+    display: flex; align-items: center; gap: 64px;
+    max-width: 1200px; margin: 0 auto;
+    flex-wrap: wrap;
+  }
+  .about-us-photo {
+    flex: 0 0 300px;
+    height: 380px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 16px 48px rgba(27,67,50,0.15);
+    border: 3px solid var(--gold-light);
+  }
+  .about-us-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    display: block;
+  }
+  .about-us-info { flex: 1; }
+  .about-us-info .section-tag { text-align: left; justify-content: flex-start; }
+  .about-us-info h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px; font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 8px; line-height: 1.15;
+  }
+  .about-us-info .credentials {
+    font-size: 15px; color: var(--text-muted);
+    margin-bottom: 20px; line-height: 1.5;
+  }
+  .about-us-info p {
+    font-size: 16px; line-height: 1.8;
+    color: var(--text-dark); margin-bottom: 14px;
+  }
+  .about-us-badges {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: clamp(6px, 1vw, 12px);
+    margin-top: 0;
+    width: 100%;
+    flex-basis: 100%;
+    justify-content: center;
+  }
+  .about-us-badge {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    font-size: clamp(11px, 1.2vw, 15px);
+    font-weight: 600;
+    padding: clamp(6px, 0.8vw, 10px) clamp(12px, 1.5vw, 22px);
+    border-radius: 24px;
+    letter-spacing: 0.5px;
+    border: 2px solid var(--gold);
+    box-shadow: 0 2px 8px rgba(45,106,79,0.2);
+    white-space: nowrap;
+    flex-shrink: 1;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    color: var(--primary);
+    padding: 20px 32px;
+    text-decoration: none;
+    font-size: 19px;
+    font-weight: 600;
+    transition: color 0.3s;
+    white-space: nowrap;
+  }
+  .btn-secondary:hover { color: var(--primary-dark); }
+
+  /* ── SERVICES ── */
+  /* ── SECTION DIVIDER ── */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: transparent;
+    position: relative;
+  }
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-light), transparent);
+    margin: 0 20px;
+  }
+  .divider-icon {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 28px;
+    color: var(--gold);
+    line-height: 1;
+    padding: 16px 0;
+  }
+
+  .services {
+    padding: 80px 60px 100px;
+    background: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .section-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: var(--primary);
+    border-radius: 50%;
+    color: var(--gold-light);
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+    font-weight: 700;
+    vertical-align: middle;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 64px;
+    position: relative;
+    z-index: 1;
+  }
+  .section-tag {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px; font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 12px;
+  }
+  .section-header p {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .service-card-wrapper {
+    perspective: 1000px;
+    cursor: pointer;
+  }
+  .service-card {
+    position: relative;
+    border-radius: 16px;
+    transition: transform 0.6s ease;
+    transform-style: preserve-3d;
+    min-height: 380px;
+  }
+  .service-card.flipped {
+    transform: rotateY(180deg);
+  }
+  .service-card-wrapper:hover .service-card:not(.flipped) {
+    box-shadow: 0 12px 40px rgba(45, 106, 79, 0.1);
+  }
+  .card-front, .card-back {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid transparent;
+    background: var(--cream);
+  }
+  .card-front {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+  }
+  .service-card-wrapper:hover .card-front {
+    border-color: var(--accent);
+  }
+  .card-back {
+    transform: rotateY(180deg);
+    background: var(--cream);
+    color: var(--text-dark);
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 18px 18px 14px;
+    border: 2px solid var(--primary);
+    overflow: hidden;
+  }
+  .card-back h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 5px;
+    flex-shrink: 0;
+  }
+  .card-back p {
+    font-size: 11px;
+    line-height: 1.3;
+    color: var(--text-body) !important;
+    margin-bottom: 4px;
+  }
+  .card-back p strong {
+    color: var(--primary-dark) !important;
+    font-weight: 700;
+  }
+  .card-back .book-service-btn {
+    display: inline-block;
+    margin-top: auto;
+    padding: 8px 18px;
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-align: center;
+    transition: all 0.3s;
+    flex-shrink: 0;
+  }
+  .card-back .book-service-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(45, 106, 79, 0.2);
+  }
+  .service-img {
+    width: 100%; height: 180px;
+    overflow: hidden;
+    position: relative;
+  }
+  .service-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+    display: block;
+  }
+  .service-card-wrapper:hover .service-img img {
+    transform: scale(1.05);
+  }
+  .service-body {
+    padding: 22px 24px 20px;
+  }
+  .service-card h3, .card-front h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 600;
+    color: var(--primary-dark);
+    margin-bottom: 6px;
+  }
+  .service-card p, .card-front p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-body);
+  }
+  .card-front .flip-hint-front {
+    font-size: 11px;
+    color: var(--primary);
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 10px 0 14px;
+    opacity: 0.55;
+    margin-top: auto;
+    flex-shrink: 0;
+  }
+
+  /* ── ABOUT / PHILOSOPHY ── */
+  .about {
+    padding: 100px 60px;
+    display: flex; align-items: center; gap: 80px;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .about-visual {
+    flex: 0 0 420px;
+    height: 520px;
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-visual-img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+  .about-visual-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, rgba(27,67,50,0.72) 0%, rgba(45,106,79,0.55) 50%, rgba(82,183,136,0.35) 100%);
+  }
+  .about-visual .char-overlay {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 180px;
+    font-weight: 700;
+    color: white;
+    opacity: 0.08;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .about-visual .meaning-box {
+    position: relative; z-index: 2;
+    text-align: center; color: white;
+    padding: 40px 32px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    height: 100%;
+  }
+  .meaning-box .char {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 72px; font-weight: 700;
+    line-height: 1;
+    margin-bottom: 16px;
+    color: var(--gold-light);
+  }
+  .meaning-box .pinyin {
+    font-size: 16px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0.75;
+    margin-bottom: 8px;
+  }
+  .meaning-box .eng {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-style: italic;
+  }
+  .meaning-box .divider {
+    width: 40px; height: 2px;
+    background: var(--gold);
+    margin: 20px auto;
+  }
+  .about-text { flex: 1; }
+  .about-text .section-tag { text-align: left; justify-content: flex-start; }
+  .about-text h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px; font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+  .about-text p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-body);
+    margin-bottom: 16px;
+  }
+  .about-text .signature {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--light);
+  }
+  .about-text .signature .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 600;
+    color: var(--primary-dark);
+  }
+  .about-text .signature .title {
+    font-size: 14px; color: var(--text-muted);
+  }
+
+  /* ── NAME MEANING SECTION ── */
+  .name-meaning-section {
+    background: var(--cream);
+    padding: 80px 60px;
+    text-align: center;
+  }
+  .name-meaning-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .name-meaning-section h2 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 12px;
+    margin-bottom: 4px;
+    -webkit-text-stroke: 0.5px rgba(27,67,50,0.2);
+  }
+  .name-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--primary-dark);
+    letter-spacing: 3px;
+    margin-bottom: 48px;
+  }
+  .name-characters {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin-bottom: 40px;
+  }
+  .name-char {
+    flex: 1;
+    max-width: 220px;
+    text-align: center;
+  }
+  .name-char .char {
+    display: block;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 4px;
+  }
+  .name-char .pinyin {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .name-char .meaning {
+    display: block;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-body);
+  }
+  .name-note {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+    font-style: italic;
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials-section {
+    background: var(--cream);
+    padding: 80px 60px;
+  }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .testimonial-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    border: 1px solid rgba(45, 106, 79, 0.08);
+  }
+  .testimonial-stars {
+    color: var(--gold);
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+  .testimonial-card p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--text-body);
+    margin-bottom: 16px;
+  }
+  .testimonial-author {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary-dark);
+    letter-spacing: 0.5px;
+  }
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+    padding: 80px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '仁';
+    position: absolute;
+    left: -40px; top: -40px;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 300px; font-weight: 700;
+    color: white; opacity: 0.03;
+  }
+  .cta-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px; font-weight: 700;
+    color: white;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .cta-section p {
+    font-size: 18px;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 36px;
+    position: relative;
+  }
+  .btn-gold {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--primary-dark);
+    padding: 16px 40px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .btn-gold:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--primary-dark);
+    color: white;
+    padding: 60px;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: 40px;
+  }
+  .footer-brand .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px; font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .footer-brand .chinese {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 4px;
+    margin-bottom: 16px;
+  }
+  .footer-brand p {
+    font-size: 14px;
+    opacity: 0.6;
+    max-width: 280px;
+    line-height: 1.6;
+  }
+  .footer-col h4 {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    color: var(--gold-light);
+  }
+  .footer-col a {
+    display: block;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 10px;
+    transition: color 0.3s;
+  }
+  .footer-col a:hover { color: white; }
+  .footer-bottom {
+    width: 100%;
+    padding-top: 32px;
+    margin-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex; justify-content: space-between;
+    font-size: 13px; opacity: 0.5;
+  }
+
+  /* ── HAMBURGER MENU ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 101;
+  }
+  .hamburger span {
+    width: 24px; height: 2px;
+    background: var(--primary-dark);
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+
+  /* ── RESPONSIVE — tablet ── */
+  @media (max-width: 1024px) {
+    .trust-item { padding: 0 28px; }
+    .owner-bar-info { padding: 24px 32px 24px 24px; }
+    .about { gap: 48px; }
+    .about-visual { flex: 0 0 320px; height: 420px; }
+    .services-grid { gap: 20px; }
+  }
+
+  /* ── RESPONSIVE — mobile ── */
+  @media (max-width: 768px) {
+    /* Nav + hamburger */
+    nav { padding: 0 16px; overflow: visible; }
+    .hamburger { display: flex; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 72px; left: 0; right: 0;
+      background: rgba(254, 252, 246, 0.98);
+      backdrop-filter: blur(12px);
+      padding: 16px 24px 24px;
+      flex-direction: column;
+      gap: 4px;
+      border-bottom: 1px solid rgba(45,106,79,0.15);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      z-index: 100;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { list-style: none; }
+    .nav-links a {
+      display: block;
+      padding: 12px 0;
+      font-size: 16px !important;
+      border-bottom: 1px solid rgba(45,106,79,0.06);
+    }
+    .nav-links .nav-cta {
+      text-align: center;
+      margin-top: 8px;
+      padding: 14px 24px;
+    }
+    .nav-address { display: none; }
+    .nav-name { font-size: 18px !important; }
+
+    /* Trust bar — compact single row on mobile */
+    .trust-bar {
+      padding: 10px 8px;
+      display: flex;
+      justify-content: space-around;
+      gap: 0;
+      flex-wrap: nowrap;
+    }
+    .trust-item {
+      padding: 4px 6px;
+      border-right: 1px solid rgba(255,255,255,0.12);
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+    }
+    .trust-item:last-child { border-right: none; }
+    .trust-item .num { font-size: 18px; margin-bottom: 0; }
+    .trust-item .label { font-size: 7px; letter-spacing: 0.5px; }
+    .trust-bar::before { font-size: 60px; }
+
+    /* Owner bar */
+    .owner-bar { flex-direction: column; }
+    .owner-photo-wrap { width: 100%; height: 220px; }
+    .owner-photo-wrap::after {
+      top: auto; right: 0; bottom: 0; left: 0;
+      width: 100%; height: 40px;
+      background: linear-gradient(to bottom, transparent, var(--cream));
+    }
+    .owner-bar-info { padding: 20px 24px 28px; }
+    .owner-bar-name { font-size: 28px; }
+    .owner-bar-title { font-size: 14px; }
+
+    /* About Us */
+    .about-us { flex-direction: column; padding: 40px 20px; gap: 24px; }
+    .about-us-photo { flex: none; width: 100%; height: 260px; }
+    .about-us-info h2 { font-size: 30px; }
+    .about-us-info p { font-size: 15px; }
+    .about-us-badges { flex-wrap: wrap; justify-content: center; }
+    .about-us-badge { font-size: 11px; padding: 5px 12px; }
+
+    /* Name meaning */
+    .name-meaning-section { padding: 36px 20px; }
+    .name-meaning-section h2 { font-size: 36px; letter-spacing: 8px; }
+    .name-subtitle { font-size: 18px; margin-bottom: 32px; }
+    .name-characters { flex-direction: column; gap: 28px; align-items: center; }
+    .name-char .char { font-size: 44px; }
+    .name-char .meaning { font-size: 13px; }
+
+    /* Testimonials */
+    .testimonials-section { padding: 36px 20px; }
+    .testimonials-grid { grid-template-columns: 1fr; gap: 20px; }
+    .testimonial-card { padding: 24px; }
+
+    /* Services / cards */
+    .services { padding: 36px 16px; }
+    .section-header { margin-bottom: 36px; }
+    .section-header h2 { font-size: 24px; }
+    .services-grid { grid-template-columns: 1fr; gap: 16px; max-width: 400px; }
+    .service-card { min-height: 340px; }
+    .service-img { height: 160px; }
+    .service-body { padding: 16px 18px 8px; }
+    .card-back { padding: 16px 16px 12px; }
+    .card-back h3 { font-size: 16px; }
+    .card-back p { font-size: 12px; line-height: 1.4; }
+
+    /* Philosophy */
+    .about { flex-direction: column; padding: 48px 20px; gap: 32px; }
+    .about-visual { flex: none; width: 100%; height: 300px; }
+    .about-text h2 { font-size: 28px; }
+    .about-text p { font-size: 15px; }
+
+    /* Contact */
+    #contact { padding: 48px 0; }
+    #contact .section-header { margin-bottom: 32px !important; }
+
+    /* CTA */
+    .cta-section { padding: 48px 20px; }
+    .cta-section h2 { font-size: 28px; }
+    .cta-section p { font-size: 16px; }
+    .btn-gold { padding: 14px 32px; font-size: 15px; }
+
+    /* Footer */
+    footer { padding: 32px 20px; flex-direction: column; gap: 28px; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  }
+
+  /* ── RESPONSIVE — small phones ── */
+  @media (max-width: 400px) {
+    .trust-item { padding: 6px 10px; }
+    .trust-item .num { font-size: 22px; }
+    .services-grid { max-width: 100%; }
+  }
+
+  /* ── Hero-centered mobile breakpoints ── */
+  @media (max-width: 900px) {
+    .hero-centered {
+      min-height: 100vh;
+      min-height: 100dvh;
+      align-items: flex-end;
+      padding-bottom: 20px;
+    }
+    .hero-centered .slide-panel {
+      width: 100%;
+    }
+    .hero-centered .slide-panel img {
+      width: 100%;
+      height: 55%;
+      bottom: auto;
+      object-position: center 30%;
+    }
+    .hero-centered .slide-panel img:nth-child(1) { object-position: center 35%; }
+    .hero-centered .slide-panel img:nth-child(2) { object-position: center 40%; transform: none; }
+    .hero-centered .slide-panel img:nth-child(3) { object-position: center 35%; }
+    .hero-centered .slide-panel img:nth-child(4) { object-position: center 60%; }
+    .hero-centered .slide-panel::after {
+      background:
+        linear-gradient(to bottom,
+          transparent 0%,
+          transparent 10%,
+          rgba(27,67,50,0.05) 18%,
+          rgba(27,67,50,0.12) 24%,
+          rgba(27,67,50,0.22) 30%,
+          rgba(27,67,50,0.35) 36%,
+          rgba(27,67,50,0.50) 42%,
+          rgba(27,67,50,0.65) 48%,
+          rgba(27,67,50,0.78) 54%,
+          rgba(27,67,50,0.90) 60%,
+          #1B4332 68%
+        );
+    }
+    .hero-centered .center-content {
+      padding: 0 28px 20px;
+      background: none;
+      align-self: center;
+    }
+    .hero-centered .hero-chinese { font-size: 64px; letter-spacing: 12px; }
+    .hero-centered .hero-brand { font-size: 26px; letter-spacing: 5px; margin-bottom: 4px; }
+    .hero-centered .hero-rule { margin: 8px auto 12px; }
+    .hero-centered .hero-desc { font-size: 22px; margin-bottom: 28px; line-height: 1.5; }
+    .hero-centered .hero-desc .services-line { font-size: 18px; letter-spacing: 1.5px; display: block; margin-bottom: 8px; }
+    .hero-centered .ghost-char { display: none; }
+  }
+  @media (max-width: 480px) {
+    .hero-centered .hero-chinese { font-size: 52px; letter-spacing: 8px; }
+    .hero-centered .hero-brand { font-size: 22px; letter-spacing: 4px; }
+    .hero-centered .hero-desc { font-size: 20px; }
+    .hero-centered .hero-desc .services-line { font-size: 16px; letter-spacing: 1px; }
+    .hero-centered .hero-cta { padding: 14px 36px; font-size: 14px; }
+    .hero-centered .center-content { padding: 0 20px 16px; }
+  }
+
+  /* ══════════════════════════════════════════
+     MODERN MOBILE UX ENHANCEMENTS
+     ══════════════════════════════════════════ */
+
+  /* ── Entrance animations (fade-in on scroll) ── */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* Stagger cards within the grid */
+  .services-grid .animate-on-scroll:nth-child(2) { transition-delay: 0.08s; }
+  .services-grid .animate-on-scroll:nth-child(3) { transition-delay: 0.16s; }
+
+  /* ── Sticky bottom CTA bar (mobile only) ── */
+  .sticky-cta-bar {
+    display: none; /* hidden on desktop */
+  }
+  @media (max-width: 768px) {
+    .sticky-cta-bar {
+      display: flex;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 99;
+      background: rgba(27, 67, 50, 0.88);
+      backdrop-filter: blur(16px) saturate(1.4);
+      -webkit-backdrop-filter: blur(16px) saturate(1.4);
+      padding: 12px 16px;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border-top: 1px solid rgba(201, 169, 110, 0.3);
+      box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.15);
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .sticky-cta-bar.is-visible {
+      transform: translateY(0);
+    }
+    .sticky-cta-bar a {
+      display: block;
+      flex: 1;
+      max-width: 320px;
+      text-align: center;
+      background: var(--gold);
+      color: var(--primary-dark);
+      padding: 14px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      min-height: 48px;
+      line-height: 20px;
+      transition: background 0.2s;
+    }
+    .sticky-cta-bar a:active {
+      background: var(--gold-light);
+    }
+    .sticky-cta-bar .sticky-phone {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 20px;
+      min-height: 48px;
+      border-radius: 8px;
+      border: 1.5px solid var(--gold-light);
+      background: transparent;
+      color: var(--gold-light);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      flex-shrink: 0;
+      transition: background 0.2s, color 0.2s;
+    }
+    .sticky-cta-bar .sticky-phone:active {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+    /* Add bottom padding to footer so sticky bar doesn't cover content */
+    footer { padding-bottom: 88px !important; }
+  }
+
+  /* ── Touch-friendly enhancements ── */
+  @media (max-width: 768px) {
+    /* Ensure all CTA buttons meet 44px minimum touch target */
+    .btn-secondary, .btn-gold, .nav-cta, .book-service-btn {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card-back .book-service-btn {
+      padding: 12px 20px;
+      font-size: 13px;
+      min-height: 44px;
+      border-radius: 8px;
+    }
+    /* Active/tap feedback on cards */
+    .service-card-wrapper:active .card-front {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(82, 183, 136, 0.2);
+    }
+    /* "Tap" instead of "Click" hint — handled via JS classList swap */
+    .flip-hint-front { font-size: 12px !important; }
+  }
+
+  /* ── Glassmorphism nav enhancement on mobile ── */
+  @media (max-width: 768px) {
+    nav {
+      background: rgba(254, 252, 246, 0.82);
+      backdrop-filter: blur(20px) saturate(1.3);
+      -webkit-backdrop-filter: blur(20px) saturate(1.3);
+    }
+  }
+
+  /* ── Refined mobile section spacing ── */
+  @media (max-width: 768px) {
+    .trust-bar { margin-bottom: 0; }
+    .services { padding: 56px 16px; }
+    #about-us { padding: 36px 0 !important; }
+    .about-us { padding: 0 20px !important; gap: 28px !important; }
+    .about { padding: 56px 20px !important; }
+    .cta-section { padding: 56px 20px; }
+  }
+
+  /* ── Card grid gap refinement ── */
+  @media (max-width: 768px) {
+    .services-grid { gap: 20px; }
+  }
+
+  /* ── MOBILE HERB BAR (under trust bar) ── */
+  .mobile-herb-bar {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .mobile-herb-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #2D6A4F 0%, #1B4332 100%);
+      color: white;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 10px 16px;
+      border-bottom: 1px solid rgba(201,169,110,0.25);
+    }
+    .mobile-herb-bar .herb-icon {
+      width: 28px; height: 28px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Noto Serif SC', serif;
+      font-size: 14px; font-weight: 700;
+      color: var(--primary-dark);
+      flex-shrink: 0;
+    }
+  }
+
+  /* ── FLOATING HERB STORE CTA ── */
+  .floating-herb-cta {
+    position: fixed;
+    bottom: 32px; right: 32px;
+    z-index: 90;
+    display: flex; align-items: center; gap: 10px;
+    background: var(--primary-dark);
+    color: white;
+    padding: 14px 24px 14px 18px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px; font-weight: 600;
+    letter-spacing: 0.3px;
+    box-shadow: 0 8px 32px rgba(27,67,50,0.35);
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    cursor: pointer;
+  }
+  .floating-herb-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(27,67,50,0.45);
+    background: var(--primary);
+  }
+  .floating-herb-cta .herb-icon {
+    width: 32px; height: 32px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px; font-weight: 700;
+    color: var(--primary-dark);
+  }
+  @media (max-width: 768px) {
+    .floating-herb-cta {
+      display: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand" style="text-decoration: none;">
+    <div class="nav-logo">仁</div>
+    <div class="nav-text-group">
+      <div class="nav-name">Ji Ren Tang Healing</div>
+      <div class="nav-address">4853 S Sheridan Rd #604, Tulsa, OK 74135</div>
+    </div>
+  </a>
+  <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#our-name">Our Story</a></li>
+    <li><a href="#about-us">About</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="jrt-store-mockup.html">Shop Herbs</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="jrt-booking-mockup.html" class="nav-cta">Book a Session</a></li>
+  </ul>
+  <a href="jrt-store-mockup.html" class="cart-btn" aria-label="Shopping cart">
+    &#128722;
+    <span class="cart-badge" id="cartBadge">0</span>
+  </a>
+</nav>
+
+<!-- ★ TRUST BAR — green stats, first thing below nav ★ -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <div class="num">15+</div>
+    <div class="label">Years Experience</div>
+  </div>
+  <div class="trust-item">
+    <div class="num">2,000+</div>
+    <div class="label">Clients Served</div>
+  </div>
+  <div class="trust-item">
+    <div class="num">98%</div>
+    <div class="label">Client Satisfaction</div>
+  </div>
+  <div class="trust-item">
+    <div class="num" style="font-family: 'Noto Serif SC', serif;">仁</div>
+    <div class="label">Compassion First</div>
+  </div>
+</div>
+
+<!-- MOBILE SHOP HERBS BAR (visible only on mobile, sits between trust bar and hero) -->
+<a href="jrt-store-mockup.html" class="mobile-herb-bar" aria-label="Shop herbal medicine">
+  <span class="herb-icon">药</span>
+  Shop Herbs &amp; Formulas
+  <span style="margin-left:auto; font-size:18px;">›</span>
+</a>
+
+<!-- HERO — new centered text + slideshow hero (from jrt-hero-alt.html Variant A) -->
+<section class="hero-centered">
+  <div class="ghost-char">吉仁堂</div>
+  <div class="gold-gleam"></div>
+
+  <div class="slide-panel">
+    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1000&q=80&auto=format&fit=crop" alt="Wellness massage treatment">
+    <img src="https://images.unsplash.com/photo-1586768835949-e593c97c8967?w=1000&q=80&auto=format&fit=crop" alt="Traditional Chinese medicine herbs">
+    <img src="https://images.unsplash.com/photo-1512290746430-3ffb4fab31bc?w=1000&q=80&auto=format&fit=crop" alt="Meridian bodywork">
+    <img src="https://images.unsplash.com/photo-1574063900403-a4e29a4690b5?w=1200&q=80&auto=format&fit=crop" alt="Incense and zen setting">
+  </div>
+
+  <div class="center-content">
+    <div class="hero-chinese">吉仁堂</div>
+    <div class="hero-brand">Ji Ren Tang</div>
+    <div class="hero-rule"></div>
+    <p class="hero-desc">
+      <span class="services-line">Acupuncture · Herbal Medicine · Holistic Wellness</span>
+      Rooted in tradition. Personalized to you.
+    </p>
+    <a href="jrt-booking-mockup.html" class="hero-cta">Book Your Session</a>
+    <a href="#services" class="hero-explore">Explore Services →</a>
+  </div>
+</section>
+
+<!-- Section divider -->
+<div class="section-divider" aria-hidden="true">
+  <span class="divider-icon">仁</span>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-header">
+    <div class="section-tag"><span class="section-logo">仁</span> What We Offer</div>
+  </div>
+  <div class="services-grid">
+
+    <!-- Pain Management — #1 position (highest intent/volume: joint & back pain) -->
+    <div class="service-card-wrapper" onclick="this.querySelector('.service-card').classList.toggle('flipped')">
+      <div class="service-card">
+        <div class="card-front">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=700&q=80&auto=format&fit=crop" alt="Practitioner applying therapeutic back treatment for pain relief" loading="lazy">
+          </div>
+          <div class="service-body">
+            <h3>Pain Management</h3>
+            <p>Back pain, joint stiffness, sciatica, neck tension — many patients find lasting relief through acupuncture and targeted bodywork.</p>
+          </div>
+          <div class="flip-hint-front">Click to learn more</div>
+        </div>
+        <div class="card-back">
+          <h3>Pain Management</h3>
+          <p>The #1 reason patients come to Ji Ren Tang. Dr. Ren combines acupuncture, cupping, Tui Na, and herbal support to address root causes — not just mask symptoms.</p>
+          <p><strong>Common conditions:</strong> chronic back &amp; neck pain, sciatica, joint stiffness, post-surgical recovery, migraines, fibromyalgia.</p>
+          <p>Many patients notice improvement within the first few sessions. Plans are individualized and drug-free.</p>
+          <a href="jrt-booking-mockup.html?service=pain-management" class="book-service-btn">Book Pain Relief Session →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Acupuncture -->
+    <div class="service-card-wrapper" onclick="this.querySelector('.service-card').classList.toggle('flipped')">
+      <div class="service-card">
+        <div class="card-front">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=700&q=80&auto=format&fit=crop" alt="Acupuncture needles placed along patient's back" loading="lazy">
+          </div>
+          <div class="service-body">
+            <h3>Acupuncture</h3>
+            <p>Precise needle placement to restore energy flow, relieve pain, and activate your body's natural healing response.</p>
+          </div>
+          <div class="flip-hint-front">Click to learn more</div>
+        </div>
+        <div class="card-back">
+          <h3>Acupuncture</h3>
+          <p>Ultra-fine, sterile needles at specific meridian points to unblock Qi and restore balance.</p>
+          <p><strong>May help with:</strong> chronic pain, migraines, stress &amp; anxiety, insomnia, digestive issues, hormonal balance, and post-surgical recovery.</p>
+          <p>Sessions last 45–60 minutes. Many patients feel improvement after the first visit.</p>
+          <a href="jrt-booking-mockup.html?service=acupuncture" class="book-service-btn">Book Acupuncture Session →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Herbal Medicine -->
+    <div class="service-card-wrapper" onclick="this.querySelector('.service-card').classList.toggle('flipped')">
+      <div class="service-card">
+        <div class="card-front">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=700&q=80&auto=format&fit=crop" alt="Traditional Chinese herbal medicine ingredients" loading="lazy">
+          </div>
+          <div class="service-body">
+            <h3>Herbal Medicine</h3>
+            <p>Custom-blended herbal formulas crafted to address your specific constitution and health concerns.</p>
+          </div>
+          <div class="flip-hint-front">Click to learn more</div>
+        </div>
+        <div class="card-back">
+          <h3>Herbal Medicine</h3>
+          <p>Personally prescribed formulas using classical Chinese pharmacology — roots, flowers, bark, and minerals blended for your diagnosis.</p>
+          <p><strong>May support:</strong> immunity, hormonal balance, sleep, digestion, allergies, and skin health.</p>
+          <p>Available as teas, granules, capsules, or tinctures. All herbs GMP-certified and lab-tested.</p>
+          <a href="jrt-booking-mockup.html?service=herbal-medicine" class="book-service-btn">Book Herbal Consultation →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Iridology (Iris Reading) — signature differentiator -->
+    <div class="service-card-wrapper" onclick="this.querySelector('.service-card').classList.toggle('flipped')">
+      <div class="service-card">
+        <div class="card-front">
+          <div class="service-img">
+            <img src="jrt-iridology-iris.jpg" alt="Close-up macro of a human iris for iridology observation" loading="lazy">
+          </div>
+          <div class="service-body">
+            <h3>Iridology &amp; Iris Reading</h3>
+            <p>A rare, gentle iris observation — a traditional window into your constitution and the starting point for a herbal plan made for you.</p>
+          </div>
+          <div class="flip-hint-front">Click to learn more</div>
+        </div>
+        <div class="card-back">
+          <h3>Iridology &amp; Iris Reading</h3>
+          <p>Dr. Ren observes the iris's patterns, colors, and markings — a calm, non-invasive starting point that helps tailor your herbal formulas and whole-person plan.</p>
+          <p><strong>A traditional wellness assessment, not a medical diagnosis.</strong> Complementary to your medical care.</p>
+          <p>Rarely offered in Tulsa — the signature first step many patients begin with.</p>
+          <a href="jrt-booking-mockup.html?service=iridology" class="book-service-btn">Book Iris Reading →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cupping & Moxibustion -->
+    <div class="service-card-wrapper" onclick="this.querySelector('.service-card').classList.toggle('flipped')">
+      <div class="service-card">
+        <div class="card-front">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1745327883389-17150e99dcf7?w=700&q=80&auto=format&fit=crop" alt="Cupping therapy being performed on patient's back" loading="lazy">
+          </div>
+          <div class="service-body">
+            <h3>Cupping &amp; Moxibustion</h3>
+            <p>Traditional therapies to improve circulation, reduce inflammation, and release deep-held tension.</p>
+          </div>
+          <div class="flip-hint-front">Click to learn more</div>
+        </div>
+        <div class="card-back">
+          <h3>Cupping &amp; Moxibustion</h3>
+          <p><strong>Cupping:</strong> gentle suction to release deep muscle tension, improve circulation, and support sports recovery.</p>
+          <p><strong>Moxibustion:</strong> dried mugwort warmed near acupuncture points to boost immunity, ease joint stiffness, and improve circulation.</p>
+          <p>Often combined with acupuncture for comprehensive treatment.</p>
+          <a href="jrt-booking-mockup.html?service=cupping" class="book-service-btn">Book Cupping Session →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tui Na Massage -->
+    <div class="service-card-wrapper" onclick="this.querySelector('.service-card').classList.toggle('flipped')">
+      <div class="service-card">
+        <div class="card-front">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=700&q=80&auto=format&fit=crop" alt="Practitioner performing Tui Na therapeutic massage" loading="lazy">
+          </div>
+          <div class="service-body">
+            <h3>Tui Na Massage</h3>
+            <p>Therapeutic bodywork using Chinese massage techniques to address musculoskeletal and internal conditions.</p>
+          </div>
+          <div class="flip-hint-front">Click to learn more</div>
+        </div>
+        <div class="card-back">
+          <h3>Tui Na Massage</h3>
+          <p>Chinese therapeutic massage along the meridian system — pressing, rolling, kneading, and stretching to address pain at its source.</p>
+          <p><strong>May help with:</strong> neck, back &amp; shoulder pain, frozen shoulder, sciatica, TMJ, and repetitive strain.</p>
+          <p>Clinical and targeted — not relaxation massage. Ideal for athletes and desk workers.</p>
+          <a href="jrt-booking-mockup.html?service=tui-na" class="book-service-btn">Book Tui Na Session →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wellness Programs -->
+    <div class="service-card-wrapper" onclick="this.querySelector('.service-card').classList.toggle('flipped')">
+      <div class="service-card">
+        <div class="card-front">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=700&q=80&auto=format&fit=crop" alt="Serene wellness program — yoga and meditation" loading="lazy">
+          </div>
+          <div class="service-body">
+            <h3>Wellness Programs</h3>
+            <p>Comprehensive plans combining multiple modalities for chronic conditions, prenatal care, and long-term health optimization.</p>
+          </div>
+          <div class="flip-hint-front">Click to learn more</div>
+        </div>
+        <div class="card-back">
+          <h3>Wellness Programs</h3>
+          <p>Multi-session plans combining acupuncture, herbal medicine, dietary guidance, and lifestyle coaching — tailored to chronic or complex conditions.</p>
+          <p><strong>Common programs:</strong> fibromyalgia, autoimmune support, fertility, stress resilience, seasonal allergies, and immune strengthening.</p>
+          <p>Includes regular progress assessments and adjusted protocols.</p>
+          <a href="jrt-booking-mockup.html?service=wellness" class="book-service-btn">Book Wellness Consult →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fertility & Reproductive Wellness -->
+    <div class="service-card-wrapper" onclick="this.querySelector('.service-card').classList.toggle('flipped')">
+      <div class="service-card">
+        <div class="card-front">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1493894473891-10fc1e5dbd22?w=700&q=80&auto=format&fit=crop" alt="Hands forming heart shape over pregnant belly — fertility and hope" loading="lazy">
+          </div>
+          <div class="service-body">
+            <h3>Fertility &amp; Reproductive Wellness</h3>
+            <p>Acupuncture and herbal medicine to support your fertility journey — naturally or alongside IVF and other assisted approaches.</p>
+          </div>
+          <div class="flip-hint-front">Click to learn more</div>
+        </div>
+        <div class="card-back">
+          <h3>Fertility &amp; Reproductive Wellness</h3>
+          <p>TCM has supported reproductive health for centuries. Dr. Ren works with patients at every stage — from natural conception to IVF support.</p>
+          <p><strong>May support:</strong> cycle regulation, IUI/IVF protocols, PCOS &amp; endometriosis, hormonal balance, prenatal wellness, and postpartum recovery.</p>
+          <p>Many patients find acupuncture helps reduce the stress of the fertility journey itself.</p>
+          <a href="jrt-booking-mockup.html?service=fertility" class="book-service-btn">Book Fertility Consult →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- First Visit Consultation -->
+    <div class="service-card-wrapper" onclick="this.querySelector('.service-card').classList.toggle('flipped')">
+      <div class="service-card">
+        <div class="card-front">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=700&q=80&auto=format&fit=crop" alt="First visit consultation — health assessment" loading="lazy">
+          </div>
+          <div class="service-body">
+            <h3>First Visit Consultation</h3>
+            <p>In-depth health assessment including pulse diagnosis, tongue analysis, and personalized treatment planning.</p>
+          </div>
+          <div class="flip-hint-front">Click to learn more</div>
+        </div>
+        <div class="card-back">
+          <h3>First Visit Consultation</h3>
+          <p>A 75-minute session combining detailed health history with pulse diagnosis, tongue observation, and abdominal palpation.</p>
+          <p><strong>You'll receive:</strong> a clear TCM diagnosis, personalized treatment plan, dietary recommendations, and often your first acupuncture treatment in the same visit.</p>
+          <p>No referral needed. Insurance accepted. Walk-ins welcome.</p>
+          <a href="jrt-booking-mockup.html?service=first-visit" class="book-service-btn">Book Your First Visit →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Section divider -->
+<div class="section-divider" aria-hidden="true">
+  <span class="divider-icon">仁</span>
+</div>
+
+<!-- THE NAME — meaning of 吉仁堂 -->
+<section class="name-meaning-section" id="our-name">
+  <div class="name-meaning-inner">
+    <div class="section-tag"><span class="section-logo">仁</span> Our Name</div>
+    <h2>吉 仁 堂</h2>
+    <p class="name-subtitle">Hall of Fortunate Benevolence</p>
+    <div class="name-characters">
+      <div class="name-char">
+        <span class="char">吉</span>
+        <span class="pinyin">Jí</span>
+        <span class="meaning">Auspicious, fortunate — the hope that healing begins the moment you walk through the door.</span>
+      </div>
+      <div class="name-char">
+        <span class="char">仁</span>
+        <span class="pinyin">Rén</span>
+        <span class="meaning">Compassion, benevolence — the heart of every treatment we provide.</span>
+      </div>
+      <div class="name-char">
+        <span class="char">堂</span>
+        <span class="pinyin">Táng</span>
+        <span class="meaning">A hall, a gathering place — the sanctuary where healing comes together.</span>
+      </div>
+    </div>
+    <p class="name-note">There is also a quiet nod embedded in the tradition: <em>Suān Zǎo Rén</em> (酸枣仁) — sour jujube seed — a revered classical herb used to calm the spirit and restore restful sleep. A reminder that the most powerful healing is often the most ancient.</p>
+  </div>
+</section>
+
+<!-- Section divider -->
+<div class="section-divider" aria-hidden="true">
+  <span class="divider-icon">仁</span>
+</div>
+
+<!-- ABOUT US — practitioner -->
+<section id="about-us" style="background: white; padding: 80px 0;">
+  <div class="section-header" style="margin-bottom: 48px;">
+    <div class="section-tag"><span class="section-logo">仁</span> Your Practitioner</div>
+  </div>
+  <div class="about-us">
+    <div class="about-us-photo">
+      <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=85&auto=format&fit=crop&crop=top" alt="Dr. Anna Ren, L.Ac. — Licensed Acupuncturist">
+    </div>
+    <div class="about-us-info">
+      <h2>Dr. Anna Ren, L.Ac.</h2>
+      <div class="credentials">Licensed Acupuncturist &amp; Traditional Chinese Medicine Practitioner · Tulsa, OK</div>
+      <p>Dr. Anna is a fully-licensed acupuncture physician trained in both Eastern and Western medicine. She is a medical doctor from China and has practiced acupuncture in Tulsa for nearly 20 years.</p>
+      <p>Every treatment begins with listening, honors the whole person, and draws from over 2,000 years of proven tradition — brought forward with modern care.</p>
+      <p>Her office is conveniently located 5 minutes from Tulsa Woodland Hills Mall and 5 minutes from St. Francis Hospital.</p>
+    </div>
+    <div class="about-us-badges">
+      <span class="about-us-badge">15+ Years Experience</span>
+      <span class="about-us-badge">Board Certified</span>
+      <span class="about-us-badge">NCCAOM Licensed</span>
+      <span class="about-us-badge">Est. 2009 · Tulsa, OK</span>
+    </div>
+  </div>
+</section>
+
+<!-- Section divider -->
+<div class="section-divider" aria-hidden="true">
+  <span class="divider-icon">仁</span>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="testimonials">
+  <div class="section-header">
+    <div class="section-tag"><span class="section-logo">仁</span> Patient Stories</div>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p>"I came in with chronic back pain that nothing else had helped. After just three sessions, I could move freely again. Dr. Ren truly listens and treats the whole person."</p>
+      <div class="testimonial-author">— Sarah M., Tulsa</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p>"The herbal medicine Dr. Ren prescribed changed my sleep completely. I went from waking up every two hours to sleeping through the night within a week."</p>
+      <div class="testimonial-author">— Michael T., Broken Arrow</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p>"After years of fertility struggles, we found Ji Ren Tang. Dr. Ren's approach was gentle, thorough, and deeply knowledgeable. We are now expecting our first child."</p>
+      <div class="testimonial-author">— Jennifer &amp; David K., Tulsa</div>
+    </div>
+  </div>
+</section>
+
+<!-- Section divider -->
+<div class="section-divider" aria-hidden="true">
+  <span class="divider-icon">仁</span>
+</div>
+
+<!-- CONTACT -->
+<section id="contact" style="background: white; padding: 80px 0;">
+  <div class="section-header" style="margin-bottom: 48px;">
+    <div class="section-tag"><span class="section-logo">仁</span> Get in Touch</div>
+    <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 700; color: var(--primary-dark);">Contact Us</h2>
+    <p>We'd love to hear from you. Whether you're ready to book your first appointment or simply have a question, don't hesitate to reach out.</p>
+  </div>
+  <div style="max-width: 1100px; margin: 0 auto; padding: 0 clamp(20px,4vw,60px); display: flex; gap: 48px; flex-wrap: wrap; align-items: flex-start;">
+    <div style="flex: 1; min-width: 280px;">
+      <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=600&q=85&auto=format&fit=crop" alt="Traditional Chinese medicine wellness setting" style="width: 100%; border-radius: 16px; aspect-ratio: 4/3; object-fit: cover;">
+    </div>
+    <div style="flex: 1; min-width: 280px;">
+      <div style="margin-bottom: 28px;">
+        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 700; color: var(--primary-dark); margin-bottom: 8px;">Office Location</h3>
+        <p style="font-size: 16px; color: var(--text-body); line-height: 1.7;">4853 S Sheridan Rd #604<br>Tulsa, OK 74135</p>
+      </div>
+      <div style="margin-bottom: 28px;">
+        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 700; color: var(--primary-dark); margin-bottom: 8px;">Phone</h3>
+        <p style="font-size: 16px; color: var(--text-body); line-height: 1.7;"><a href="tel:+19183617528" style="color: var(--primary); text-decoration: none;">(918) 361-7528</a></p>
+      </div>
+      <div style="margin-bottom: 28px;">
+        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 700; color: var(--primary-dark); margin-bottom: 8px;">Email</h3>
+        <p style="font-size: 16px; color: var(--text-body); line-height: 1.7;"><a href="mailto:info@jirentang.com" style="color: var(--primary); text-decoration: none;">info@jirentang.com</a></p>
+      </div>
+      <div style="margin-bottom: 28px;">
+        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 700; color: var(--primary-dark); margin-bottom: 8px;">Business Hours</h3>
+        <p style="font-size: 16px; color: var(--text-body); line-height: 1.7;">Monday – Friday: 8:00 AM – 7:00 PM<br>Saturday – Sunday: Closed</p>
+      </div>
+      <div style="background: var(--cream); border-radius: 12px; padding: 20px 24px; border-left: 4px solid var(--gold);">
+        <p style="font-size: 15px; color: var(--text-body); line-height: 1.6; margin: 0;">Walk-ins are welcome when availability allows, but we recommend scheduling in advance to ensure you receive dedicated time with Dr. Ren.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section divider -->
+<div class="section-divider" aria-hidden="true">
+  <span class="divider-icon">仁</span>
+</div>
+
+<!-- CTA -->
+<section class="cta-section" id="book">
+  <h2>Begin Your Healing Journey</h2>
+  <p>Your first consultation includes a complete health assessment and personalized treatment plan.</p>
+  <a href="jrt-booking-mockup.html" class="btn-gold">Schedule Your Appointment →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <div class="name">Ji Ren Tang Healing</div>
+    <div class="chinese">吉 仁 堂</div>
+    <p>Traditional Chinese Medicine rooted in compassion — Dr. Anna Ren, L.Ac., serving Tulsa with ancient wisdom and modern care since 2009.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Services</h4>
+    <a href="#">Pain Management</a>
+    <a href="#">Acupuncture</a>
+    <a href="#">Fertility</a>
+    <a href="#">Herbal Medicine</a>
+    <a href="#">Cupping &amp; Tui Na</a>
+  </div>
+  <div class="footer-col">
+    <h4>Visit</h4>
+    <a href="#">4853 S Sheridan Rd #604, Tulsa, OK 74135</a>
+    <a href="#">Mon–Fri: 8am – 7pm</a>
+    <a href="tel:+19183617528">(918) 361-7528</a>
+  </div>
+  <div class="footer-col">
+    <h4>Connect</h4>
+    <a href="#">Instagram</a>
+    <a href="#">Facebook</a>
+    <a href="#">Email Us</a>
+    <a href="#">Leave a Review</a>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Ji Ren Tang Healing. All rights reserved.</span>
+    <span>Privacy Policy · Terms of Service</span>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE CTA BAR -->
+<div class="sticky-cta-bar" id="stickyCta">
+  <a href="jrt-booking-mockup.html">Book Your Session →</a>
+  <a href="tel:+19183617528" class="sticky-phone" aria-label="Call us">Call</a>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  /* ── Intersection Observer: fade-in-on-scroll ── */
+  var animTargets = document.querySelectorAll(
+    '.service-card-wrapper, .section-header, .about-us-photo, .about-us-info, ' +
+    '.about-visual, .about-text, .cta-section h2, .cta-section p, .cta-section .btn-gold, ' +
+    '.owner-bar, .about-us-badges'
+  );
+  animTargets.forEach(function(el) { el.classList.add('animate-on-scroll'); });
+
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    animTargets.forEach(function(el) { observer.observe(el); });
+  } else {
+    // Fallback: show everything immediately
+    animTargets.forEach(function(el) { el.classList.add('is-visible'); });
+  }
+
+  /* ── Sticky CTA bar: show after hero CTA scrolls out of view ── */
+  var heroCta = document.querySelector('.hero-cta');
+  var stickyBar = document.getElementById('stickyCta');
+  var ctaSection = document.getElementById('book');
+
+  if (heroCta && stickyBar && 'IntersectionObserver' in window) {
+    var heroObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) {
+          stickyBar.classList.add('is-visible');
+        } else {
+          stickyBar.classList.remove('is-visible');
+        }
+      });
+    }, { threshold: 0 });
+    heroObserver.observe(heroCta);
+
+    // Also hide when CTA section is visible (redundant CTA)
+    if (ctaSection) {
+      var ctaObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            stickyBar.classList.remove('is-visible');
+          }
+        });
+      }, { threshold: 0.3 });
+      ctaObserver.observe(ctaSection);
+    }
+  }
+
+  /* ── Mobile: change "Click" to "Tap" on flip hints ── */
+  function updateHintText() {
+    var isMobile = window.innerWidth <= 768 || 'ontouchstart' in window ||
+      window.matchMedia('(pointer: coarse)').matches;
+    var text = isMobile ? 'Tap to learn more' : 'Click to learn more';
+    document.querySelectorAll('.flip-hint-front').forEach(function(el) {
+      el.textContent = text;
+    });
+  }
+  updateHintText();
+  window.addEventListener('resize', updateHintText);
+
+  /* ── Close hamburger when a nav link is tapped ── */
+  document.querySelectorAll('.nav-links a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.remove('open');
+    });
+  });
+
+})();
+</script>
+
+<!-- Floating Herb Store CTA -->
+<a href="jrt-store-mockup.html" class="floating-herb-cta" aria-label="Shop herbal medicine">
+  <span class="herb-icon">药</span>
+  Shop Herbs Now
+</a>
+
+<script>
+/* Cart badge — reads store cart from localStorage so the count persists across pages */
+(function(){
+  try {
+    var cart = JSON.parse(localStorage.getItem('jrt-cart') || '[]');
+    var total = cart.reduce(function(s, c){ return s + c.qty; }, 0);
+    var badge = document.getElementById('cartBadge');
+    if (badge && total > 0) {
+      badge.textContent = total;
+      badge.classList.add('visible');
+    }
+  } catch(e){}
+})();
+</script>
+
+</body>
+</html>

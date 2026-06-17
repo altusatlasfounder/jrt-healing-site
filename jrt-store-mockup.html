@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ji Ren Tang Healing — Herbal Dispensary</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;600;700&display=swap');
+
+  :root {
+    --primary: #2D6A4F;
+    --primary-dark: #1B4332;
+    --secondary: #52B788;
+    --accent: #95D5B2;
+    --light: #D8F3DC;
+    --cream: #FEFCF6;
+    --warm: #F5E6D3;
+    --gold: #C9A96E;
+    --gold-light: #E8D5B0;
+    --text-dark: #1a1a1a;
+    --text-body: #3d3d3d;
+    --text-muted: #6b6b6b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-body);
+    background: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    background: rgba(254, 252, 246, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(45, 106, 79, 0.1);
+    padding: 0 clamp(16px, 3vw, 40px);
+    height: 72px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: clamp(8px, 1vw, 14px);
+    text-decoration: none; cursor: pointer;
+  }
+  .nav-text-group {
+    display: flex; flex-direction: column; justify-content: center;
+    min-width: 0;
+  }
+  .nav-logo {
+    width: 44px; height: 44px;
+    background: var(--primary); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold-light);
+    font-family: 'Noto Serif SC', serif;
+    font-size: 20px; font-weight: 700;
+  }
+  .nav-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.2vw, 28px); font-weight: 700;
+    color: var(--primary-dark); letter-spacing: 0.5px;
+    white-space: nowrap; line-height: 1.1;
+  }
+  .nav-address {
+    font-size: clamp(10px, 1.2vw, 13px);
+    color: var(--text-body);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    margin-top: 5px;
+    line-height: 1;
+  }
+  .nav-right { display: flex; align-items: center; gap: clamp(12px, 2.5vw, 32px); }
+  .nav-links {
+    display: flex; align-items: center; gap: clamp(12px, 2.5vw, 32px);
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-size: clamp(11px, 1.1vw, 14px); font-weight: 500;
+    color: var(--text-body); letter-spacing: 0.5px;
+    transition: color 0.3s; white-space: nowrap;
+  }
+  .nav-links a:hover { color: var(--primary); }
+  .nav-links a.active { color: var(--primary); font-weight: 600; }
+  .nav-cta {
+    background: var(--primary) !important;
+    color: white !important;
+    padding: 10px 24px; border-radius: 6px;
+    font-weight: 500 !important; transition: background 0.3s !important;
+  }
+  .nav-cta:hover { background: var(--primary-dark) !important; }
+  .cart-btn {
+    position: relative; cursor: pointer;
+    background: none; border: none;
+    font-size: 22px; color: var(--primary-dark);
+    padding: 6px;
+  }
+  .cart-badge {
+    position: absolute; top: -4px; right: -6px;
+    background: var(--gold); color: white;
+    font-size: 10px; font-weight: 700;
+    width: 18px; height: 18px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .cart-badge.visible { opacity: 1; }
+
+  /* Hamburger */
+  .hamburger {
+    display: none; cursor: pointer; background: none; border: none;
+    flex-direction: column; gap: 5px; padding: 8px;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--primary-dark); transition: 0.3s;
+  }
+  .mobile-menu {
+    display: none; position: fixed; top: 72px; left: 0; right: 0;
+    background: var(--cream); border-bottom: 1px solid rgba(45,106,79,0.1);
+    padding: 20px; z-index: 999;
+    flex-direction: column; gap: 16px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    text-decoration: none; font-size: 16px; font-weight: 500;
+    color: var(--text-body); padding: 8px 0;
+  }
+
+  /* ── STORE HERO ── */
+  .store-hero {
+    margin-top: 72px;
+    min-height: auto;
+    background: linear-gradient(135deg, var(--primary-dark) 0%, #1a3a2a 30%, #234d38 60%, var(--primary) 100%);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 24px 40px;
+    position: relative; overflow: hidden;
+  }
+  .store-hero::before {
+    content: '药';
+    position: absolute; left: -30px; top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Noto Serif SC', serif;
+    font-size: 400px; font-weight: 700;
+    color: white; opacity: 0.03; line-height: 1;
+  }
+  .store-hero::after {
+    content: '草';
+    position: absolute; right: -30px; bottom: -40px;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 300px; font-weight: 700;
+    color: white; opacity: 0.03; line-height: 1;
+  }
+  .store-hero-content { position: relative; z-index: 1; max-width: 700px; }
+  .store-hero h1 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(28px, 4vw, 48px); font-weight: 700;
+    color: var(--gold-light); letter-spacing: 4px;
+    margin-bottom: 4px;
+  }
+  .store-hero h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 3vw, 36px); font-weight: 600;
+    color: white; margin-bottom: 10px;
+  }
+  .store-hero p {
+    font-size: clamp(13px, 1.4vw, 16px);
+    color: var(--accent); line-height: 1.7;
+    max-width: 560px; margin: 0 auto;
+  }
+
+  /* ── FILTER BAR ── */
+  .filter-bar {
+    position: sticky; top: 72px; z-index: 900;
+    background: rgba(254, 252, 246, 0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(45,106,79,0.1);
+    padding: 14px clamp(16px, 3vw, 40px);
+    display: flex; align-items: center; gap: 12px;
+    flex-wrap: wrap;
+  }
+  .filter-pills {
+    display: flex; gap: 8px; flex-wrap: wrap; flex: 1;
+  }
+  .filter-pill {
+    padding: 7px 18px; border-radius: 20px;
+    border: 1px solid rgba(45,106,79,0.2);
+    background: transparent; color: var(--text-body);
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    transition: all 0.25s; white-space: nowrap;
+    font-family: 'Inter', sans-serif;
+  }
+  .filter-pill:hover { border-color: var(--primary); color: var(--primary); }
+  .filter-pill.active {
+    background: var(--primary); color: white;
+    border-color: var(--primary);
+  }
+  .search-box {
+    position: relative; flex-shrink: 0;
+  }
+  .search-box input {
+    padding: 8px 16px 8px 36px; border-radius: 20px;
+    border: 1px solid rgba(45,106,79,0.2);
+    background: white; font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    width: 340px; outline: none;
+    transition: border-color 0.3s;
+  }
+  .search-box input:focus { border-color: var(--primary); }
+  .search-box::before {
+    content: '\1F50D'; position: absolute;
+    left: 12px; top: 50%; transform: translateY(-50%);
+    font-size: 14px; opacity: 0.5;
+  }
+
+  /* ── PRODUCT GRID ── */
+  .products-section {
+    max-width: 1300px; margin: 0 auto;
+    padding: 40px clamp(16px, 3vw, 40px) 80px;
+  }
+  .product-count {
+    font-size: 13px; color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 24px;
+  }
+
+  /* ── PRODUCT CARD ── */
+  .product-card {
+    background: white; border-radius: 16px;
+    border: 1px solid rgba(45,106,79,0.08);
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(27,67,50,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex; flex-direction: column;
+  }
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(27,67,50,0.12);
+  }
+  .product-img {
+    height: 200px; position: relative;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .product-img .char-bg {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 72px; font-weight: 700;
+    opacity: 0.12; position: absolute;
+    color: white;
+  }
+  .cat-badge {
+    position: absolute; top: 12px; left: 12px;
+    padding: 4px 12px; border-radius: 12px;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.8px; text-transform: uppercase;
+    color: white;
+  }
+  .cat-classical { background: var(--primary-dark); }
+  .cat-single { background: var(--secondary); }
+  .cat-blend { background: var(--gold); }
+  .cat-tea { background: #7B6B43; }
+  .cat-topical { background: #8B5E3C; }
+  .prescribed-badge {
+    position: absolute; top: 12px; right: 12px;
+    padding: 4px 10px; border-radius: 12px;
+    font-size: 9px; font-weight: 600;
+    background: rgba(254,252,246,0.9); color: var(--gold);
+    letter-spacing: 0.5px;
+    border: 1px solid var(--gold-light);
+  }
+  .product-body {
+    padding: 20px; flex: 1;
+    display: flex; flex-direction: column;
+  }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 700;
+    color: var(--primary-dark); line-height: 1.2;
+    margin-bottom: 2px;
+  }
+  .product-chinese {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px; color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .product-desc {
+    font-size: 13px; color: var(--text-muted);
+    line-height: 1.5; margin-bottom: 16px;
+    flex: 1;
+  }
+
+  /* Size selector */
+  .size-selector {
+    display: flex; gap: 4px; margin-bottom: 12px;
+    flex-wrap: nowrap;
+  }
+  .size-opt {
+    padding: 4px 8px; border-radius: 5px;
+    border: 1px solid rgba(45,106,79,0.2);
+    font-size: 11px; font-weight: 500; cursor: pointer;
+    background: transparent; color: var(--text-body);
+    transition: all 0.2s; font-family: 'Inter', sans-serif;
+  }
+  .size-opt:hover { border-color: var(--primary); }
+  .size-opt.active {
+    background: var(--light); border-color: var(--primary);
+    color: var(--primary); font-weight: 600;
+  }
+
+  /* Price + cart row */
+  .price-row {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; margin-top: auto;
+  }
+  .product-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 700;
+    color: var(--primary-dark);
+  }
+  .qty-group {
+    display: flex; align-items: center; gap: 0;
+    border: 1px solid rgba(45,106,79,0.2); border-radius: 6px;
+    overflow: hidden;
+  }
+  .qty-btn {
+    width: 30px; height: 30px; border: none;
+    background: var(--light); color: var(--primary);
+    font-size: 16px; font-weight: 600; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+  .qty-btn:hover { background: var(--accent); }
+  .qty-val {
+    width: 36px; height: 30px; border: none;
+    text-align: center; font-size: 13px; font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-dark); background: white;
+  }
+  .add-btn {
+    padding: 10px 20px; border-radius: 8px;
+    background: var(--primary); color: white;
+    border: none; font-size: 13px; font-weight: 600;
+    cursor: pointer; transition: all 0.3s;
+    font-family: 'Inter', sans-serif;
+    white-space: nowrap;
+  }
+  .add-btn:hover { background: var(--primary-dark); }
+  .add-btn.added {
+    background: var(--gold); transform: scale(1.05);
+  }
+
+  /* ── 仁 DIVIDER ── */
+  .ren-divider {
+    text-align: center; padding: 40px 0;
+    position: relative;
+  }
+  .ren-divider::before {
+    content: '';
+    position: absolute; top: 50%; left: 10%; right: 10%;
+    height: 1px; background: rgba(45,106,79,0.1);
+  }
+  .ren-divider span {
+    position: relative; z-index: 1;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 32px; font-weight: 700;
+    color: var(--primary); opacity: 0.12;
+    background: var(--cream); padding: 0 24px;
+  }
+
+  /* ── CART DRAWER ── */
+  .cart-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+    z-index: 2000; opacity: 0; pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .cart-overlay.open { opacity: 1; pointer-events: all; }
+  .cart-drawer {
+    position: fixed; top: 0; right: -440px; bottom: 0;
+    width: 420px; max-width: 90vw;
+    background: var(--cream); z-index: 2001;
+    box-shadow: -8px 0 40px rgba(0,0,0,0.15);
+    transition: right 0.35s cubic-bezier(0.4,0,0.2,1);
+    display: flex; flex-direction: column;
+  }
+  .cart-drawer.open { right: 0; }
+  .cart-header {
+    padding: 24px; border-bottom: 1px solid rgba(45,106,79,0.1);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .cart-header h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px; font-weight: 700; color: var(--primary-dark);
+  }
+  .cart-close {
+    background: none; border: none; font-size: 24px;
+    cursor: pointer; color: var(--text-muted);
+    padding: 4px 8px;
+  }
+  .cart-items {
+    flex: 1; overflow-y: auto; padding: 16px 24px;
+  }
+  .cart-empty {
+    text-align: center; padding: 60px 20px;
+    color: var(--text-muted);
+  }
+  .cart-empty .empty-icon {
+    font-size: 48px; margin-bottom: 16px; opacity: 0.3;
+  }
+  .cart-item {
+    display: flex; gap: 14px; padding: 16px 0;
+    border-bottom: 1px solid rgba(45,106,79,0.06);
+  }
+  .cart-item-img {
+    width: 64px; height: 64px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .cart-item-img .ci-char {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 24px; font-weight: 700; color: white; opacity: 0.7;
+  }
+  .cart-item-info { flex: 1; }
+  .cart-item-name {
+    font-size: 14px; font-weight: 600; color: var(--text-dark);
+    margin-bottom: 2px;
+  }
+  .cart-item-size {
+    font-size: 11px; color: var(--text-muted); margin-bottom: 8px;
+  }
+  .cart-item-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .cart-item-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 700; color: var(--primary-dark);
+  }
+  .cart-item-remove {
+    background: none; border: none;
+    font-size: 11px; color: var(--text-muted);
+    cursor: pointer; text-decoration: underline;
+    font-family: 'Inter', sans-serif;
+  }
+  .cart-item-remove:hover { color: #c0392b; }
+  .cart-footer {
+    padding: 24px; border-top: 1px solid rgba(45,106,79,0.1);
+  }
+  .cart-subtotal {
+    display: flex; justify-content: space-between;
+    margin-bottom: 6px;
+  }
+  .cart-subtotal .label { font-size: 14px; color: var(--text-muted); }
+  .cart-subtotal .value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 700; color: var(--primary-dark);
+  }
+  .cart-shipping-note {
+    font-size: 11px; color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+  .checkout-btn {
+    width: 100%; padding: 14px; border-radius: 8px;
+    background: var(--primary); color: white; border: none;
+    font-size: 15px; font-weight: 600; cursor: pointer;
+    transition: background 0.3s;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 8px;
+  }
+  .checkout-btn:hover { background: var(--primary-dark); }
+  .continue-btn {
+    width: 100%; padding: 12px; border-radius: 8px;
+    background: transparent; color: var(--text-body); border: 1px solid rgba(45,106,79,0.2);
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Inter', sans-serif;
+  }
+  .continue-btn:hover { border-color: var(--primary); color: var(--primary); }
+
+  /* ── CHECKOUT VIEW ── */
+  .checkout-view {
+    display: none;
+    max-width: 900px; margin: 0 auto;
+    padding: 40px clamp(16px, 3vw, 40px) 80px;
+  }
+  .checkout-view.active { display: block; }
+  .checkout-view h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px; font-weight: 700;
+    color: var(--primary-dark); margin-bottom: 32px;
+  }
+  .checkout-grid {
+    display: grid; grid-template-columns: 1fr 380px; gap: 40px;
+  }
+  .form-section { margin-bottom: 32px; }
+  .form-section h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--primary-dark); margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(45,106,79,0.1);
+  }
+  .form-row {
+    display: flex; gap: 16px; margin-bottom: 14px;
+  }
+  .form-field {
+    flex: 1; display: flex; flex-direction: column; gap: 4px;
+  }
+  .form-field label {
+    font-size: 12px; font-weight: 600; color: var(--text-muted);
+    letter-spacing: 0.5px;
+  }
+  .form-field input, .form-field select {
+    padding: 10px 14px; border-radius: 8px;
+    border: 1px solid rgba(45,106,79,0.2);
+    font-size: 14px; font-family: 'Inter', sans-serif;
+    outline: none; transition: border-color 0.3s;
+    background: white;
+  }
+  .form-field input:focus, .form-field select:focus {
+    border-color: var(--primary);
+  }
+  .shipping-options { display: flex; flex-direction: column; gap: 10px; }
+  .ship-opt {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px; border-radius: 10px;
+    border: 1px solid rgba(45,106,79,0.15);
+    cursor: pointer; transition: all 0.2s;
+  }
+  .ship-opt:hover { border-color: var(--primary); }
+  .ship-opt.selected {
+    border-color: var(--primary); background: var(--light);
+  }
+  .ship-opt input[type="radio"] { accent-color: var(--primary); }
+  .ship-opt-info { flex: 1; }
+  .ship-opt-name { font-size: 14px; font-weight: 600; color: var(--text-dark); }
+  .ship-opt-time { font-size: 12px; color: var(--text-muted); }
+  .ship-opt-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 700; color: var(--primary-dark);
+  }
+  .payment-icons {
+    display: flex; gap: 10px; flex-wrap: wrap;
+  }
+  .pay-icon {
+    padding: 8px 16px; border-radius: 8px;
+    border: 1px solid rgba(45,106,79,0.15);
+    font-size: 12px; font-weight: 600;
+    color: var(--text-muted); background: white;
+  }
+
+  /* Order summary sidebar */
+  .order-summary {
+    background: white; border-radius: 16px;
+    border: 1px solid rgba(45,106,79,0.08);
+    padding: 24px; height: fit-content;
+    position: sticky; top: 160px;
+  }
+  .order-summary h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--primary-dark); margin-bottom: 16px;
+  }
+  .os-item {
+    display: flex; justify-content: space-between;
+    padding: 8px 0; font-size: 13px;
+    border-bottom: 1px solid rgba(45,106,79,0.05);
+  }
+  .os-item .os-name { color: var(--text-body); flex: 1; }
+  .os-item .os-qty { color: var(--text-muted); margin: 0 12px; }
+  .os-item .os-price { font-weight: 600; color: var(--text-dark); }
+  .os-totals { margin-top: 16px; }
+  .os-row {
+    display: flex; justify-content: space-between;
+    padding: 6px 0; font-size: 14px;
+  }
+  .os-row.total {
+    border-top: 2px solid var(--primary);
+    margin-top: 8px; padding-top: 12px;
+    font-weight: 700; font-size: 18px;
+    color: var(--primary-dark);
+  }
+  .os-row.total .os-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+  }
+  .place-order-btn {
+    width: 100%; padding: 16px; border-radius: 8px;
+    background: var(--primary); color: white; border: none;
+    font-size: 16px; font-weight: 600; cursor: pointer;
+    transition: background 0.3s; margin-top: 20px;
+    font-family: 'Inter', sans-serif;
+  }
+  .place-order-btn:hover { background: var(--primary-dark); }
+  .back-to-shop {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 14px; color: var(--primary);
+    text-decoration: none; margin-bottom: 24px;
+    cursor: pointer; font-weight: 500;
+  }
+  .back-to-shop:hover { text-decoration: underline; }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+    z-index: 5000; display: none;
+    align-items: center; justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: white; border-radius: 20px;
+    padding: 48px; max-width: 440px; text-align: center;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+  }
+  .modal-box h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 700;
+    color: var(--primary-dark); margin-bottom: 12px;
+  }
+  .modal-box p {
+    font-size: 14px; color: var(--text-muted);
+    line-height: 1.6; margin-bottom: 24px;
+  }
+  .modal-btn {
+    padding: 12px 32px; border-radius: 8px;
+    background: var(--primary); color: white; border: none;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--primary-dark); color: white;
+    padding: 60px clamp(16px, 3vw, 60px) 40px;
+  }
+  .footer-grid {
+    display: flex; justify-content: space-between;
+    flex-wrap: wrap; gap: 40px;
+    max-width: 1200px; margin: 0 auto 40px;
+  }
+  .footer-col h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 700;
+    color: var(--gold-light); margin-bottom: 16px;
+  }
+  .footer-col a {
+    display: block; color: var(--accent);
+    text-decoration: none; font-size: 14px;
+    margin-bottom: 10px; transition: color 0.3s;
+  }
+  .footer-col a:hover { color: white; }
+  .footer-col p {
+    font-size: 13px; color: var(--accent);
+    line-height: 1.6; max-width: 360px;
+  }
+  .fda-disclaimer {
+    max-width: 1200px; margin: 0 auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 11px; color: rgba(255,255,255,0.4);
+    line-height: 1.6;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { overflow: visible; }
+    .nav-brand { flex-shrink: 1; min-width: 0; overflow: hidden; }
+    .nav-name { font-size: 16px !important; }
+    .nav-address { display: none; }
+    .nav-right { gap: 4px; flex-shrink: 0; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .cart-btn { font-size: 26px; padding: 8px; }
+    .checkout-grid { grid-template-columns: 1fr; }
+    .form-row { flex-direction: column; }
+    .store-hero { min-height: auto; padding: 20px 16px; }
+    .filter-bar { flex-direction: column; align-items: stretch; gap: 10px; padding: 10px 16px; overflow: hidden; max-width: 100vw; }
+    .filter-pills { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; gap: 6px; padding-bottom: 6px; max-width: 100%; }
+    .filter-pill { padding: 6px 14px; font-size: 12px; flex-shrink: 0; }
+    .search-box { width: 100%; }
+    .search-box input { width: 100%; }
+    .product-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+    .footer-grid { flex-direction: column; }
+  }
+  @media (max-width: 400px) {
+    .product-grid { grid-template-columns: 1fr; }
+    .price-row { flex-wrap: wrap; }
+    .store-hero h1 { font-size: 24px; }
+    .store-hero h2 { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand" style="text-decoration: none;">
+    <div class="nav-logo">仁</div>
+    <div class="nav-text-group">
+      <div class="nav-name">Ji Ren Tang Healing</div>
+      <div class="nav-address">4853 S Sheridan Rd #604, Tulsa, OK 74135</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#our-name">Our Story</a></li>
+      <li><a href="index.html#about-us">About</a></li>
+      <li><a href="index.html#testimonials">Reviews</a></li>
+      <li><a href="#" class="active" onclick="showShop(); return false;">Shop Herbs</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="jrt-booking-mockup.html" class="nav-cta">Book a Session</a></li>
+    </ul>
+    <button class="cart-btn" onclick="toggleCart()" aria-label="Shopping cart">
+      &#128722;
+      <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+    <button class="hamburger" onclick="toggleMobile()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="index.html#services">Services</a>
+  <a href="index.html#our-name">Our Story</a>
+  <a href="index.html#about-us">About</a>
+  <a href="index.html#testimonials">Reviews</a>
+  <a href="index.html#about">About</a>
+  <a href="#" style="color:var(--primary);font-weight:600;" onclick="showShop(); toggleMobile(); return false;">Shop</a>
+  <a href="jrt-booking-mockup.html">Book Now</a>
+</div>
+
+<!-- STORE HERO -->
+<section class="store-hero">
+  <div class="store-hero-content">
+    <h1>吉仁堂 本草药房</h1>
+    <h2>Herbal Dispensary</h2>
+    <p>Traditional Chinese herbal formulas curated and prescribed by Dr. Anna Ren, L.Ac. — custom-blended for your constitution, rooted in 2,000 years of classical herbal medicine.</p>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar" id="filterBar">
+  <div class="filter-pills">
+    <button class="filter-pill active" data-cat="all">All Products</button>
+    <button class="filter-pill" data-cat="classical">Classical Formulas</button>
+    <button class="filter-pill" data-cat="single">Single Herbs</button>
+    <button class="filter-pill" data-cat="blend">Condition Blends</button>
+    <button class="filter-pill" data-cat="tea">Herbal Teas</button>
+    <button class="filter-pill" data-cat="topical">Topical Products</button>
+  </div>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Try &quot;stress&quot;, &quot;knee pain&quot;, &quot;ginger&quot;, &quot;tea&quot;..." aria-label="Search products">
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<main class="products-section" id="productsSection">
+  <div class="product-count" id="productCount"></div>
+  <div class="product-grid" id="productGrid"></div>
+</main>
+
+<!-- CHECKOUT VIEW (hidden by default) -->
+<div class="checkout-view" id="checkoutView">
+  <a class="back-to-shop" onclick="showShop()">&#8592; Back to shop</a>
+  <h2>Checkout</h2>
+  <div class="checkout-grid">
+    <div class="checkout-form">
+      <div class="form-section">
+        <h3>Shipping Address</h3>
+        <div class="form-row">
+          <div class="form-field"><label>First Name</label><input type="text" placeholder="Anna"></div>
+          <div class="form-field"><label>Last Name</label><input type="text" placeholder="Ren"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field"><label>Address</label><input type="text" placeholder="123 Main St"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field"><label>City</label><input type="text" placeholder="Tulsa"></div>
+          <div class="form-field"><label>State</label>
+            <select><option>Oklahoma</option><option>Other</option></select>
+          </div>
+          <div class="form-field"><label>ZIP</label><input type="text" placeholder="74101"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field"><label>Email</label><input type="email" placeholder="anna@example.com"></div>
+          <div class="form-field"><label>Phone</label><input type="tel" placeholder="(918) 555-0123"></div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h3>Shipping Method</h3>
+        <div class="shipping-options">
+          <label class="ship-opt selected" onclick="selectShipping(this, 5.99)">
+            <input type="radio" name="shipping" checked>
+            <div class="ship-opt-info">
+              <div class="ship-opt-name">Standard Shipping</div>
+              <div class="ship-opt-time">5-7 business days</div>
+            </div>
+            <div class="ship-opt-price">$5.99</div>
+          </label>
+          <label class="ship-opt" onclick="selectShipping(this, 12.99)">
+            <input type="radio" name="shipping">
+            <div class="ship-opt-info">
+              <div class="ship-opt-name">Priority Shipping</div>
+              <div class="ship-opt-time">2-3 business days</div>
+            </div>
+            <div class="ship-opt-price">$12.99</div>
+          </label>
+          <label class="ship-opt" onclick="selectShipping(this, 0)">
+            <input type="radio" name="shipping">
+            <div class="ship-opt-info">
+              <div class="ship-opt-name">Free Shipping</div>
+              <div class="ship-opt-time">Orders over $75 qualify</div>
+            </div>
+            <div class="ship-opt-price">$0.00</div>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h3>Payment Method</h3>
+        <div class="payment-icons">
+          <span class="pay-icon">VISA</span>
+          <span class="pay-icon">Mastercard</span>
+          <span class="pay-icon">AMEX</span>
+          <span class="pay-icon">Discover</span>
+          <span class="pay-icon">PayPal</span>
+          <span class="pay-icon">Apple Pay</span>
+        </div>
+        <div style="margin-top:16px;">
+          <div class="form-row">
+            <div class="form-field"><label>Card Number</label><input type="text" placeholder="**** **** **** ****"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-field"><label>Expiration</label><input type="text" placeholder="MM / YY"></div>
+            <div class="form-field"><label>CVV</label><input type="text" placeholder="***"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="order-summary" id="orderSummary">
+      <h3>Order Summary</h3>
+      <div id="osSummaryItems"></div>
+      <div class="os-totals" id="osTotals"></div>
+      <button class="place-order-btn" onclick="placeOrder()">Place Order</button>
+    </div>
+  </div>
+</div>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<aside class="cart-drawer" id="cartDrawer" role="complementary" aria-label="Shopping cart">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button class="cart-close" onclick="toggleCart()" aria-label="Close cart">&times;</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer" id="cartFooter" style="display:none;">
+    <div class="cart-subtotal">
+      <span class="label">Subtotal</span>
+      <span class="value" id="cartSubtotal">$0.00</span>
+    </div>
+    <div class="cart-shipping-note">Free shipping on orders over $75</div>
+    <button class="checkout-btn" onclick="goToCheckout()">Proceed to Checkout</button>
+    <button class="continue-btn" onclick="toggleCart()">Continue Shopping</button>
+  </div>
+</aside>
+
+<!-- MOCKUP MODAL -->
+<div class="modal-overlay" id="mockupModal">
+  <div class="modal-box">
+    <h3>This is a Preview</h3>
+    <p>This storefront is a design mockup for Ji Ren Tang Healing. No real orders will be processed. The full e-commerce integration will be built during the website development phase.</p>
+    <button class="modal-btn" onclick="closeMockupModal()">Got It</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>Ji Ren Tang Healing</h4>
+      <p>Traditional Chinese Medicine rooted in compassion. Acupuncture, herbal medicine, and holistic healing in Tulsa, Oklahoma.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="index.html#services">Services</a>
+      <a href="jrt-booking-mockup.html">Book Appointment</a>
+      <a href="#">Herbal Store</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="#">Tulsa, Oklahoma</a>
+      <a href="#">(918) 555-0123</a>
+      <a href="#">info@jirentanghealing.com</a>
+    </div>
+  </div>
+  <div class="fda-disclaimer">
+    These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure, or prevent any disease. All herbal formulas are curated and supervised by Dr. Anna Ren, L.Ac. Individual results may vary. Please consult your healthcare provider before starting any new supplement regimen.<br>
+    &copy; 2024 Ji Ren Tang Healing. All rights reserved.
+  </div>
+</footer>
+
+<script>
+/* ── PRODUCT DATA ── */
+const PRODUCTS = [
+  // Classical Formulas
+  { id:1, name:"Free & Easy Wanderer", chinese:"逍遥散", pinyin:"Xiao Yao San", cat:"classical",
+    desc:"Classical formula for stress relief, liver qi stagnation, and emotional balance. Supports mood, digestion, and menstrual comfort.",
+    sizes:[{label:"100 Capsules",price:28},{label:"200 Capsules",price:48},{label:"300 Capsules",price:62}],
+    gradient:"linear-gradient(135deg,#1B4332,#2D6A4F)", char:"逍" },
+  { id:2, name:"Six-Ingredient Rehmannia", chinese:"六味地黄丸", pinyin:"Liu Wei Di Huang Wan", cat:"classical",
+    desc:"Nourishes kidney yin, supports vitality and healthy aging. One of the most prescribed classical formulas in TCM history.",
+    sizes:[{label:"200 Pills",price:24},{label:"400 Pills",price:42},{label:"600 Pills",price:56}],
+    gradient:"linear-gradient(135deg,#234d38,#3a7d5e)", char:"肾" },
+  { id:3, name:"Tonify the Middle Qi", chinese:"补中益气汤", pinyin:"Bu Zhong Yi Qi Tang", cat:"classical",
+    desc:"Strengthens digestion, lifts energy, and addresses chronic fatigue and qi deficiency. Foundational for recovery.",
+    sizes:[{label:"100g Granules",price:32},{label:"200g Granules",price:56},{label:"300g Granules",price:74}],
+    gradient:"linear-gradient(135deg,#1a3a2a,#2D6A4F)", char:"气" },
+  { id:4, name:"Restore the Spleen", chinese:"归脾汤", pinyin:"Gui Pi Tang", cat:"classical",
+    desc:"Calms the mind and nourishes blood. Addresses insomnia, anxiety, and overthinking from spleen and heart deficiency.",
+    sizes:[{label:"100 Capsules",price:30},{label:"200 Capsules",price:52},{label:"300 Capsules",price:68}],
+    gradient:"linear-gradient(135deg,#2D6A4F,#52B788)", char:"脾" },
+  { id:5, name:"Emperor's Heart Tonic", chinese:"天王补心丹", pinyin:"Tian Wang Bu Xin Dan", cat:"classical",
+    desc:"Nourishes heart yin, calms restlessness, and supports deep, restorative sleep. For heart-kidney disharmony.",
+    sizes:[{label:"200 Pills",price:26},{label:"400 Pills",price:46},{label:"600 Pills",price:60}],
+    gradient:"linear-gradient(135deg,#1B4332,#234d38)", char:"心" },
+  { id:6, name:"Four Substance Decoction", chinese:"四物汤", pinyin:"Si Wu Tang", cat:"classical",
+    desc:"The foundational blood-nourishing formula. Supports menstrual health, complexion, and overall blood vitality.",
+    sizes:[{label:"100g Granules",price:28},{label:"200g Granules",price:48},{label:"300g Granules",price:64}],
+    gradient:"linear-gradient(135deg,#3a7d5e,#52B788)", char:"血" },
+
+  // Single Herbs
+  { id:7, name:"Astragalus Root", chinese:"黄芪", pinyin:"Huang Qi", cat:"single",
+    desc:"Premier qi tonic. Strengthens immune function, boosts energy, and supports the body's natural defenses.",
+    sizes:[{label:"60 Capsules",price:18},{label:"120 Capsules",price:32},{label:"200 Capsules",price:44}],
+    gradient:"linear-gradient(135deg,#52B788,#95D5B2)", char:"芪" },
+  { id:8, name:"Angelica Root", chinese:"当归", pinyin:"Dang Gui", cat:"single",
+    desc:"The quintessential blood tonic. Supports women's health, circulation, and post-recovery nourishment.",
+    sizes:[{label:"60 Capsules",price:20},{label:"120 Capsules",price:36},{label:"200 Capsules",price:48}],
+    gradient:"linear-gradient(135deg,#95D5B2,#D8F3DC)", char:"归" },
+  { id:9, name:"Goji Berries", chinese:"枸杞子", pinyin:"Gou Qi Zi", cat:"single",
+    desc:"Nourishes liver and kidney, benefits eyesight, and provides potent antioxidant support. A longevity superfood.",
+    sizes:[{label:"8 oz Bag",price:16},{label:"16 oz Bag",price:28},{label:"32 oz Bag",price:38}],
+    gradient:"linear-gradient(135deg,#C9A96E,#E8D5B0)", char:"杞" },
+  { id:10, name:"Reishi Mushroom", chinese:"灵芝", pinyin:"Ling Zhi", cat:"single",
+    desc:"The mushroom of immortality. Supports immune modulation, calm focus, and healthy stress response.",
+    sizes:[{label:"60 Capsules",price:24},{label:"120 Capsules",price:42},{label:"200 Capsules",price:56}],
+    gradient:"linear-gradient(135deg,#1B4332,#52B788)", char:"芝" },
+  { id:11, name:"Coptis Root", chinese:"黄连", pinyin:"Huang Lian", cat:"single",
+    desc:"Clears heat and dampness. Supports digestive comfort and addresses inflammation from excess internal heat.",
+    sizes:[{label:"60 Capsules",price:22},{label:"120 Capsules",price:38},{label:"200 Capsules",price:52}],
+    gradient:"linear-gradient(135deg,#2D6A4F,#1B4332)", char:"连" },
+  { id:12, name:"White Atractylodes", chinese:"白术", pinyin:"Bai Zhu", cat:"single",
+    desc:"Strengthens the spleen, dries dampness, and supports healthy digestion. A cornerstone of qi-building formulas.",
+    sizes:[{label:"60 Capsules",price:18},{label:"120 Capsules",price:32},{label:"200 Capsules",price:44}],
+    gradient:"linear-gradient(135deg,#D8F3DC,#95D5B2)", char:"术" },
+
+  // Condition Blends
+  { id:13, name:"Serenity Blend", chinese:"安神方", pinyin:"An Shen Fang", cat:"blend", prescribed:true,
+    desc:"Dr. Ren's sleep support formula. Calms the spirit, nourishes heart blood, and promotes deep, restorative rest.",
+    sizes:[{label:"30-Day Supply",price:36},{label:"60-Day Supply",price:62},{label:"90-Day Supply",price:82}],
+    gradient:"linear-gradient(135deg,#1a2a3a,#2D6A4F)", char:"安" },
+  { id:14, name:"Fertility Support", chinese:"助孕方", pinyin:"Zhu Yun Fang", cat:"blend", prescribed:true,
+    desc:"Comprehensive reproductive wellness formula. Nourishes blood, regulates cycle, and supports conception readiness.",
+    sizes:[{label:"30-Day Supply",price:42},{label:"60-Day Supply",price:72},{label:"90-Day Supply",price:96}],
+    gradient:"linear-gradient(135deg,#C9A96E,#2D6A4F)", char:"孕" },
+  { id:15, name:"Pain Relief Formula", chinese:"止痛方", pinyin:"Zhi Tong Fang", cat:"blend", prescribed:true,
+    desc:"Moves qi and blood to address musculoskeletal discomfort. For chronic back pain, joint stiffness, and tension.",
+    sizes:[{label:"30-Day Supply",price:38},{label:"60-Day Supply",price:66},{label:"90-Day Supply",price:88}],
+    gradient:"linear-gradient(135deg,#1B4332,#8B5E3C)", char:"痛" },
+  { id:16, name:"Digestive Harmony", chinese:"和胃方", pinyin:"He Wei Fang", cat:"blend", prescribed:true,
+    desc:"Restores gut balance and addresses bloating, irregular appetite, and digestive weakness from spleen qi deficiency.",
+    sizes:[{label:"30-Day Supply",price:34},{label:"60-Day Supply",price:58},{label:"90-Day Supply",price:78}],
+    gradient:"linear-gradient(135deg,#52B788,#1B4332)", char:"胃" },
+  { id:17, name:"Calm & Balance", chinese:"解郁方", pinyin:"Jie Yu Fang", cat:"blend", prescribed:true,
+    desc:"Soothes liver qi stagnation, eases emotional tension, and supports a centered, balanced state of mind.",
+    sizes:[{label:"30-Day Supply",price:36},{label:"60-Day Supply",price:62},{label:"90-Day Supply",price:82}],
+    gradient:"linear-gradient(135deg,#234d38,#95D5B2)", char:"郁" },
+  { id:18, name:"Immunity Shield", chinese:"防御方", pinyin:"Fang Yu Fang", cat:"blend", prescribed:true,
+    desc:"Strengthens wei qi (defensive energy) for seasonal protection. Dr. Ren's formula for year-round resilience.",
+    sizes:[{label:"30-Day Supply",price:34},{label:"60-Day Supply",price:58},{label:"90-Day Supply",price:78}],
+    gradient:"linear-gradient(135deg,#2D6A4F,#C9A96E)", char:"防" },
+
+  // Teas
+  { id:19, name:"Chrysanthemum & Goji Eye Tea", chinese:"菊花枸杞茶", pinyin:"Ju Hua Gou Qi Cha", cat:"tea",
+    desc:"Gentle daily tea for eye wellness and liver nourishment. Naturally caffeine-free with subtle floral sweetness.",
+    sizes:[{label:"20 Tea Bags",price:14},{label:"40 Tea Bags",price:24},{label:"60 Tea Bags",price:32}],
+    gradient:"linear-gradient(135deg,#7B6B43,#C9A96E)", char:"菊" },
+  { id:20, name:"Eight Treasures Women's Tea", chinese:"八珍茶", pinyin:"Ba Zhen Cha", cat:"tea",
+    desc:"Nourishing blend of eight classical herbs for women's vitality. Supports blood, energy, and radiant wellness.",
+    sizes:[{label:"20 Tea Bags",price:16},{label:"40 Tea Bags",price:28},{label:"60 Tea Bags",price:38}],
+    gradient:"linear-gradient(135deg,#C9A96E,#7B6B43)", char:"珍" },
+  { id:21, name:"Ginger Warming Tea", chinese:"生姜暖胃茶", pinyin:"Sheng Jiang Cha", cat:"tea",
+    desc:"Warming digestive tea with dried ginger root. Settles the stomach, warms the middle, and supports circulation.",
+    sizes:[{label:"20 Tea Bags",price:12},{label:"40 Tea Bags",price:20},{label:"60 Tea Bags",price:28}],
+    gradient:"linear-gradient(135deg,#8B5E3C,#C9A96E)", char:"姜" },
+  { id:22, name:"Calm Spirit Evening Tea", chinese:"安神晚茶", pinyin:"An Shen Wan Cha", cat:"tea",
+    desc:"Bedtime ritual blend with suan zao ren and chamomile. Quiets the mind and prepares the body for restful sleep.",
+    sizes:[{label:"20 Tea Bags",price:14},{label:"40 Tea Bags",price:24},{label:"60 Tea Bags",price:32}],
+    gradient:"linear-gradient(135deg,#1a2a3a,#7B6B43)", char:"晚" },
+
+  // Topical
+  { id:23, name:"Dit Da Jow Liniment", chinese:"跌打酒", pinyin:"Die Da Jiu", cat:"topical",
+    desc:"Traditional martial arts recovery liniment. Reduces bruising, eases muscle soreness, and promotes tissue healing.",
+    sizes:[{label:"4 oz Bottle",price:22},{label:"8 oz Bottle",price:38}],
+    gradient:"linear-gradient(135deg,#8B5E3C,#1B4332)", char:"跌" },
+  { id:24, name:"Herbal Pain Patches", chinese:"镇痛贴", pinyin:"Zhen Tong Tie", cat:"topical",
+    desc:"Targeted topical relief with warming herbal extract. Apply directly to sore muscles, stiff joints, or tension areas.",
+    sizes:[{label:"5-Pack",price:18},{label:"10-Pack",price:32},{label:"20-Pack",price:56}],
+    gradient:"linear-gradient(135deg,#1B4332,#8B5E3C)", char:"贴" },
+  { id:25, name:"Warming Moxa Oil", chinese:"艾草精油", pinyin:"Ai Cao Jing You", cat:"topical",
+    desc:"Moxibustion-inspired warming oil with mugwort extract. Promotes circulation, eases cold-pattern pain, and soothes.",
+    sizes:[{label:"2 oz Bottle",price:24},{label:"4 oz Bottle",price:42}],
+    gradient:"linear-gradient(135deg,#C9A96E,#8B5E3C)", char:"艾" },
+  { id:26, name:"Muscle Recovery Balm", chinese:"活络膏", pinyin:"Huo Luo Gao", cat:"topical",
+    desc:"Cooling-then-warming herbal balm for sports recovery and muscle tension. With menthol, camphor, and Chinese herbs.",
+    sizes:[{label:"2 oz Tin",price:20},{label:"4 oz Tin",price:36}],
+    gradient:"linear-gradient(135deg,#2D6A4F,#8B5E3C)", char:"络" }
+];
+
+/* ── STATE ── */
+let cart = JSON.parse(localStorage.getItem('jrt-cart') || '[]');
+let activeFilter = 'all';
+let searchQuery = '';
+let shippingCost = 5.99;
+
+/* ── RENDER ── */
+function renderProducts() {
+  const grid = document.getElementById('productGrid');
+  const count = document.getElementById('productCount');
+  let filtered = PRODUCTS;
+  if (activeFilter !== 'all') filtered = filtered.filter(p => p.cat === activeFilter);
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    filtered = filtered.filter(p =>
+      p.name.toLowerCase().includes(q) ||
+      p.chinese.includes(q) ||
+      p.pinyin.toLowerCase().includes(q) ||
+      p.desc.toLowerCase().includes(q)
+    );
+  }
+  count.textContent = filtered.length + ' product' + (filtered.length !== 1 ? 's' : '');
+  grid.innerHTML = filtered.map(p => {
+    const catLabel = {classical:'Classical Formula',single:'Single Herb',blend:'Condition Blend',tea:'Herbal Tea',topical:'Topical'}[p.cat];
+    const catClass = 'cat-' + p.cat;
+    return `
+    <article class="product-card" data-id="${p.id}">
+      <div class="product-img" style="background:${p.gradient}">
+        <span class="char-bg">${p.char}</span>
+        <span class="cat-badge ${catClass}">${catLabel}</span>
+        ${p.prescribed ? '<span class="prescribed-badge">Prescribed by Dr. Ren</span>' : ''}
+      </div>
+      <div class="product-body">
+        <div class="product-name">${p.name}</div>
+        <div class="product-chinese">${p.chinese} · ${p.pinyin}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="size-selector">
+          ${p.sizes.map((s,i) => `<button class="size-opt${i===0?' active':''}" data-idx="${i}" onclick="selectSize(${p.id},${i},this)">${s.label}</button>`).join('')}
+        </div>
+        <div class="price-row">
+          <div class="product-price" id="price-${p.id}">$${p.sizes[0].price.toFixed(2)}</div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div class="qty-group">
+              <button class="qty-btn" onclick="changeQty(${p.id},-1)" aria-label="Decrease quantity">&minus;</button>
+              <input class="qty-val" id="qty-${p.id}" type="text" value="1" readonly aria-label="Quantity">
+              <button class="qty-btn" onclick="changeQty(${p.id},1)" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="add-btn" id="add-${p.id}" onclick="addToCart(${p.id})">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </article>`;
+  }).join('');
+}
+
+function selectSize(pid, idx, btn) {
+  const card = btn.closest('.product-card');
+  card.querySelectorAll('.size-opt').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const p = PRODUCTS.find(x => x.id === pid);
+  document.getElementById('price-' + pid).textContent = '$' + p.sizes[idx].price.toFixed(2);
+}
+
+function changeQty(pid, delta) {
+  const el = document.getElementById('qty-' + pid);
+  let v = parseInt(el.value) + delta;
+  if (v < 1) v = 1; if (v > 99) v = 99;
+  el.value = v;
+}
+
+/* ── CART ── */
+function addToCart(pid) {
+  const p = PRODUCTS.find(x => x.id === pid);
+  const card = document.querySelector(`.product-card[data-id="${pid}"]`);
+  const activeSize = card.querySelector('.size-opt.active');
+  const sizeIdx = parseInt(activeSize.dataset.idx);
+  const qty = parseInt(document.getElementById('qty-' + pid).value);
+  const size = p.sizes[sizeIdx];
+
+  const existing = cart.find(c => c.pid === pid && c.sizeIdx === sizeIdx);
+  if (existing) {
+    existing.qty += qty;
+    if (existing.qty > 99) existing.qty = 99;
+  } else {
+    cart.push({ pid, sizeIdx, qty, sizeLabel: size.label, price: size.price, name: p.name, chinese: p.chinese, gradient: p.gradient, char: p.char });
+  }
+
+  // Animation
+  const btn = document.getElementById('add-' + pid);
+  btn.classList.add('added');
+  btn.textContent = 'Added!';
+  setTimeout(() => { btn.classList.remove('added'); btn.textContent = 'Add to Cart'; }, 800);
+
+  updateCartUI();
+}
+
+function removeFromCart(idx) {
+  cart.splice(idx, 1);
+  updateCartUI();
+  renderCartDrawer();
+  if (document.getElementById('checkoutView').classList.contains('active')) renderOrderSummary();
+}
+
+function updateCartQty(idx, delta) {
+  cart[idx].qty += delta;
+  if (cart[idx].qty < 1) cart[idx].qty = 1;
+  if (cart[idx].qty > 99) cart[idx].qty = 99;
+  updateCartUI();
+  renderCartDrawer();
+}
+
+function saveCart() { localStorage.setItem('jrt-cart', JSON.stringify(cart)); }
+
+function updateCartUI() {
+  saveCart();
+  const badge = document.getElementById('cartBadge');
+  const total = cart.reduce((s, c) => s + c.qty, 0);
+  badge.textContent = total;
+  badge.classList.toggle('visible', total > 0);
+}
+
+function renderCartDrawer() {
+  const items = document.getElementById('cartItems');
+  const footer = document.getElementById('cartFooter');
+  if (cart.length === 0) {
+    items.innerHTML = '<div class="cart-empty"><div class="empty-icon">&#128722;</div><p>Your cart is empty</p></div>';
+    footer.style.display = 'none';
+    return;
+  }
+  footer.style.display = 'block';
+  items.innerHTML = cart.map((c, i) => `
+    <div class="cart-item">
+      <div class="cart-item-img" style="background:${c.gradient};border-radius:10px;">
+        <span class="ci-char">${c.char}</span>
+      </div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${c.name}</div>
+        <div class="cart-item-size">${c.sizeLabel}</div>
+        <div class="cart-item-bottom">
+          <div style="display:flex;align-items:center;gap:0;">
+            <div class="qty-group">
+              <button class="qty-btn" onclick="updateCartQty(${i},-1)">&minus;</button>
+              <input class="qty-val" value="${c.qty}" readonly>
+              <button class="qty-btn" onclick="updateCartQty(${i},1)">+</button>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div class="cart-item-price">$${(c.price * c.qty).toFixed(2)}</div>
+            <button class="cart-item-remove" onclick="removeFromCart(${i})">Remove</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  const subtotal = cart.reduce((s, c) => s + c.price * c.qty, 0);
+  document.getElementById('cartSubtotal').textContent = '$' + subtotal.toFixed(2);
+}
+
+function toggleCart() {
+  const overlay = document.getElementById('cartOverlay');
+  const drawer = document.getElementById('cartDrawer');
+  const isOpen = drawer.classList.contains('open');
+  if (isOpen) {
+    overlay.classList.remove('open');
+    drawer.classList.remove('open');
+  } else {
+    renderCartDrawer();
+    overlay.classList.add('open');
+    drawer.classList.add('open');
+  }
+}
+
+/* ── CHECKOUT ── */
+function goToCheckout() {
+  toggleCart();
+  document.getElementById('productsSection').style.display = 'none';
+  document.getElementById('filterBar').style.display = 'none';
+  document.getElementById('checkoutView').classList.add('active');
+  renderOrderSummary();
+  window.scrollTo(0, 0);
+}
+
+function showShop() {
+  document.getElementById('productsSection').style.display = '';
+  document.getElementById('filterBar').style.display = '';
+  document.getElementById('checkoutView').classList.remove('active');
+  window.scrollTo(0, 0);
+}
+
+function selectShipping(el, cost) {
+  shippingCost = cost;
+  document.querySelectorAll('.ship-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  renderOrderSummary();
+}
+
+function renderOrderSummary() {
+  const itemsEl = document.getElementById('osSummaryItems');
+  const totalsEl = document.getElementById('osTotals');
+  itemsEl.innerHTML = cart.map(c => `
+    <div class="os-item">
+      <span class="os-name">${c.name}</span>
+      <span class="os-qty">x${c.qty}</span>
+      <span class="os-price">$${(c.price * c.qty).toFixed(2)}</span>
+    </div>
+  `).join('');
+  const subtotal = cart.reduce((s, c) => s + c.price * c.qty, 0);
+  const freeShipping = subtotal >= 75;
+  const ship = freeShipping ? 0 : shippingCost;
+  const tax = subtotal * 0.085;
+  const total = subtotal + ship + tax;
+  totalsEl.innerHTML = `
+    <div class="os-row"><span>Subtotal</span><span>$${subtotal.toFixed(2)}</span></div>
+    <div class="os-row"><span>Shipping${freeShipping ? ' (Free!)' : ''}</span><span>$${ship.toFixed(2)}</span></div>
+    <div class="os-row"><span>Tax (est. 8.5%)</span><span>$${tax.toFixed(2)}</span></div>
+    <div class="os-row total"><span>Total</span><span class="os-val">$${total.toFixed(2)}</span></div>
+  `;
+}
+
+function placeOrder() {
+  document.getElementById('mockupModal').classList.add('open');
+}
+function closeMockupModal() {
+  document.getElementById('mockupModal').classList.remove('open');
+}
+
+/* ── FILTERS ── */
+document.querySelectorAll('.filter-pill').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.cat;
+    renderProducts();
+  });
+});
+document.getElementById('searchInput').addEventListener('input', e => {
+  searchQuery = e.target.value;
+  renderProducts();
+});
+
+/* ── MOBILE MENU ── */
+function toggleMobile() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+/* ── INIT ── */
+renderProducts();
+updateCartUI();
+</script>
+</body>
+</html>
