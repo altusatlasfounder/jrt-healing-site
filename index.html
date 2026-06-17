@@ -22,7 +22,7 @@
     --text-muted: #6b6b6b;
     /* Hero text shadows from hero-alt */
     --hero-shadow-chinese: 4px 6px 20px rgba(0,0,0,0.95), 0 0 60px rgba(0,0,0,0.7), 0 0 120px rgba(0,0,0,0.5), 0 0 160px rgba(0,0,0,0.3), 0 0 80px rgba(201,169,110,0.2);
-    --hero-shadow-text: 2px 3px 10px rgba(0,0,0,1), 0 0 24px rgba(0,0,0,1), 0 0 48px rgba(0,0,0,0.85), 0 0 80px rgba(0,0,0,0.6), 0 0 120px rgba(0,0,0,0.3);
+    --hero-shadow-text: 1px 2px 4px rgba(0,0,0,1), 2px 3px 8px rgba(0,0,0,1), 0 0 16px rgba(0,0,0,1), 0 0 32px rgba(0,0,0,0.9), 0 0 48px rgba(0,0,0,0.8), 0 0 80px rgba(0,0,0,0.6);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -332,7 +332,7 @@
     letter-spacing: 10px;
     text-transform: uppercase;
     margin-bottom: 28px;
-    text-shadow: var(--hero-shadow-chinese);
+    text-shadow: var(--hero-shadow-text);
   }
 
   .hero-centered .hero-rule {
@@ -350,7 +350,7 @@
     line-height: 1.6;
     color: rgba(254,252,246,0.88);
     margin-bottom: 72px;
-    text-shadow: var(--hero-shadow-chinese);
+    text-shadow: var(--hero-shadow-text);
   }
   .hero-centered .hero-desc .services-line {
     color: var(--gold-light);
@@ -363,7 +363,7 @@
     white-space: normal;
     flex-wrap: wrap;
     justify-content: center;
-    text-shadow: var(--hero-shadow-chinese);
+    text-shadow: var(--hero-shadow-text);
     justify-content: center;
   }
   .hero-centered .hero-desc .services-line span + span::before {
@@ -376,7 +376,7 @@
     display: block;
     font-size: clamp(24px, 3vw, 36px);
     margin-top: 8px;
-    text-shadow: var(--hero-shadow-chinese);
+    text-shadow: var(--hero-shadow-text);
   }
 
   .hero-centered .hero-cta {
@@ -1305,25 +1305,25 @@
       transform: none;
     }
     .hero-centered .hero-chinese { font-size: 80px; letter-spacing: 10px; margin-bottom: 4px; text-shadow: var(--hero-shadow-chinese); }
-    .hero-centered .hero-brand { font-size: 30px; letter-spacing: 6px; margin-bottom: 12px; text-shadow: var(--hero-shadow-chinese); }
+    .hero-centered .hero-brand { font-size: 30px; letter-spacing: 6px; margin-bottom: 12px; text-shadow: var(--hero-shadow-text); }
     .hero-centered .hero-rule { margin: 4px auto 12px; }
-    .hero-centered .hero-desc { font-size: 14px; margin-bottom: 20px; line-height: 1.6; text-shadow: var(--hero-shadow-chinese); }
+    .hero-centered .hero-desc { font-size: 14px; margin-bottom: 20px; line-height: 1.6; text-shadow: var(--hero-shadow-text); }
     .hero-centered .hero-desc .services-line {
       font-size: 24px; letter-spacing: 1.5px; display: flex;
       flex-direction: column; gap: 4px; margin-bottom: 10px; white-space: normal;
-      text-shadow: var(--hero-shadow-chinese);
+      text-shadow: var(--hero-shadow-text);
     }
     .hero-centered .hero-desc .services-line span + span::before { content: none; }
-    .hero-centered .hero-tagline { font-size: 16px; display: block; text-shadow: var(--hero-shadow-chinese); }
+    .hero-centered .hero-tagline { font-size: 16px; display: block; text-shadow: var(--hero-shadow-text); }
     .hero-centered .hero-explore { margin-top: 28px; }
     .hero-centered .ghost-char { display: none; }
   }
   @media (max-width: 480px) {
     .hero-centered .hero-chinese { font-size: 72px; letter-spacing: 8px; text-shadow: var(--hero-shadow-chinese); }
-    .hero-centered .hero-brand { font-size: 26px; letter-spacing: 5px; text-shadow: var(--hero-shadow-chinese); }
-    .hero-centered .hero-desc { font-size: 13px; text-shadow: var(--hero-shadow-chinese); }
-    .hero-centered .hero-desc .services-line { font-size: 20px; letter-spacing: 1px; text-shadow: var(--hero-shadow-chinese); }
-    .hero-centered .hero-tagline { font-size: 14px; text-shadow: var(--hero-shadow-chinese); }
+    .hero-centered .hero-brand { font-size: 26px; letter-spacing: 5px; text-shadow: var(--hero-shadow-text); }
+    .hero-centered .hero-desc { font-size: 13px; text-shadow: var(--hero-shadow-text); }
+    .hero-centered .hero-desc .services-line { font-size: 20px; letter-spacing: 1px; text-shadow: var(--hero-shadow-text); }
+    .hero-centered .hero-tagline { font-size: 14px; text-shadow: var(--hero-shadow-text); }
     .hero-centered .hero-cta { padding: 14px 36px; font-size: 14px; }
     .hero-centered .center-content { padding: 0 20px 16px; }
     .hero-centered .hero-explore { margin-top: 24px; }
