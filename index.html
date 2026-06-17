@@ -292,13 +292,23 @@
     text-align: center;
     padding: 72px 60px;
     max-width: 860px;
+    background: none;
+  }
+  .hero-centered .center-content::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    left: -60%;
+    right: -60%;
+    bottom: -40%;
+    z-index: -1;
     background: radial-gradient(ellipse at center,
-      rgba(27,67,50,0.65) 0%,
-      rgba(27,67,50,0.45) 25%,
-      rgba(27,67,50,0.25) 45%,
-      rgba(27,67,50,0.1) 60%,
-      rgba(27,67,50,0.03) 75%,
-      transparent 100%);
+      rgba(27,67,50,0.55) 0%,
+      rgba(27,67,50,0.35) 20%,
+      rgba(27,67,50,0.18) 40%,
+      rgba(27,67,50,0.06) 60%,
+      transparent 80%);
+    pointer-events: none;
   }
 
   /* ── All hero text gets the same dark shadow ── */
