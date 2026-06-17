@@ -28,9 +28,12 @@
     overflow: hidden;
   }
   .nav-brand {
-    display: flex; align-items: flex-end; gap: clamp(8px, 1vw, 14px);
-    flex-shrink: 1; min-width: 0; padding-bottom: 10px;
+    display: flex; align-items: center; gap: clamp(8px, 1vw, 14px);
+    flex-shrink: 1; min-width: 0;
     text-decoration: none; cursor: pointer;
+  }
+  .nav-text-group {
+    display: flex; flex-direction: column; justify-content: center; min-width: 0;
   }
   .nav-logo {
     width: 44px; height: 44px; background: var(--primary); border-radius: 50%;
@@ -41,16 +44,11 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(18px, 2.2vw, 28px); font-weight: 700;
     color: var(--primary-dark); letter-spacing: 0.5px; white-space: nowrap;
-    flex-shrink: 1; min-width: 0;
-  }
-  .nav-name span {
-    font-family: 'Noto Serif SC', serif; font-size: clamp(10px, 1.3vw, 16px);
-    color: var(--gold); display: block; letter-spacing: clamp(1px, 0.2vw, 2px); margin-top: -2px;
+    line-height: 1.1;
   }
   .nav-address {
-    font-size: clamp(10px, 1.2vw, 15px); color: var(--text-body); font-weight: 500;
-    letter-spacing: 0.3px; margin-left: clamp(8px, 1.5vw, 20px); white-space: nowrap;
-    flex-shrink: 1; min-width: 0;
+    font-size: clamp(10px, 1.2vw, 13px); color: var(--text-body); font-weight: 500;
+    letter-spacing: 0.3px; white-space: nowrap; margin-top: 5px; line-height: 1;
   }
   .nav-links {
     display: flex; align-items: center; gap: clamp(12px, 2.5vw, 32px); list-style: none;
@@ -291,7 +289,8 @@
 
   @media (max-width: 768px) {
     nav { padding: 0 16px; overflow: visible; }
-    .hamburger { display: flex; }
+    .hamburger { display: flex; margin-left: auto; }
+    .nav-address { display: none; }
     .nav-links {
       display: none;
       position: absolute;
@@ -341,13 +340,12 @@
 <body>
 <!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-brand">
+  <a href="index.html" class="nav-brand" style="text-decoration: none;">
     <div class="nav-logo">仁</div>
-    <div class="nav-name">
-      Ji Ren Tang Healing
-      <span>吉 仁 堂</span>
+    <div class="nav-text-group">
+      <div class="nav-name">Ji Ren Tang Healing</div>
+      <div class="nav-address">4853 S Sheridan Rd #604, Tulsa, OK 74135</div>
     </div>
-    <div class="nav-address">4853 S Sheridan Rd #604, Tulsa, OK 74135</div>
   </a>
   <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -363,6 +361,15 @@
     <li><a href="jrt-booking-mockup.html" class="nav-cta">Book a Session</a></li>
   </ul>
 </nav>
+<script>
+document.addEventListener('click', function(e) {
+  var nav = document.querySelector('.nav-links');
+  var burger = document.querySelector('.hamburger');
+  if (nav && nav.classList.contains('open') && !nav.contains(e.target) && !burger.contains(e.target)) {
+    nav.classList.remove('open');
+  }
+});
+</script>
 
 <section class="booking-hero">
   <div class="booking-hero-content">
