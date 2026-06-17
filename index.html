@@ -343,10 +343,15 @@
     font-size: 28px;
     letter-spacing: 3px;
     font-weight: 600;
-    display: block;
+    display: flex;
+    gap: 0;
     margin-bottom: 10px;
     white-space: nowrap;
     text-shadow: var(--hero-shadow-text);
+    justify-content: center;
+  }
+  .hero-centered .hero-desc .services-line span + span::before {
+    content: ' · ';
   }
 
   .hero-centered .hero-cta {
@@ -1232,7 +1237,8 @@
   @media (max-width: 900px) {
     .hero-centered {
       min-height: 100svh;
-      align-items: flex-end;
+      align-items: flex-start;
+      padding-top: 40px;
       padding-bottom: 20px;
     }
     .hero-centered .slide-panel {
@@ -1269,19 +1275,22 @@
       background: none;
       align-self: center;
     }
-    .hero-centered .hero-chinese { font-size: 56px; letter-spacing: 10px; margin-bottom: 2px; }
-    .hero-centered .hero-brand { font-size: 24px; letter-spacing: 5px; margin-bottom: 2px; }
-    .hero-centered .hero-rule { margin: 6px auto 10px; }
-    .hero-centered .hero-desc { font-size: 26px; margin-bottom: 20px; line-height: 1.5; }
-    .hero-centered .hero-desc .services-line { font-size: 20px; letter-spacing: 1.5px; display: block; margin-bottom: 8px; white-space: normal; }
+    .hero-centered .hero-chinese { font-size: 48px; letter-spacing: 8px; margin-bottom: 0; }
+    .hero-centered .hero-brand { font-size: 20px; letter-spacing: 4px; margin-bottom: 0; }
+    .hero-centered .hero-rule { margin: 4px auto 8px; }
+    .hero-centered .hero-desc { font-size: 26px; margin-bottom: 20px; line-height: 1.6; }
+    .hero-centered .hero-desc .services-line {
+      font-size: 26px; letter-spacing: 1.5px; display: flex;
+      flex-direction: column; gap: 4px; margin-bottom: 10px; white-space: normal;
+    }
     .hero-centered .hero-explore { margin-top: 28px; }
     .hero-centered .ghost-char { display: none; }
   }
   @media (max-width: 480px) {
-    .hero-centered .hero-chinese { font-size: 46px; letter-spacing: 6px; }
-    .hero-centered .hero-brand { font-size: 20px; letter-spacing: 4px; }
+    .hero-centered .hero-chinese { font-size: 42px; letter-spacing: 6px; }
+    .hero-centered .hero-brand { font-size: 18px; letter-spacing: 3px; }
     .hero-centered .hero-desc { font-size: 24px; }
-    .hero-centered .hero-desc .services-line { font-size: 18px; letter-spacing: 1px; }
+    .hero-centered .hero-desc .services-line { font-size: 22px; letter-spacing: 1px; }
     .hero-centered .hero-cta { padding: 14px 36px; font-size: 14px; }
     .hero-centered .center-content { padding: 0 20px 16px; }
     .hero-centered .hero-explore { margin-top: 24px; }
@@ -1571,7 +1580,7 @@
     <div class="hero-brand">Ji Ren Tang</div>
     <div class="hero-rule"></div>
     <p class="hero-desc">
-      <span class="services-line">Acupuncture · Herbal&nbsp;Medicine · Holistic&nbsp;Wellness</span>
+      <span class="services-line"><span>Acupuncture</span><span>Herbal Medicine</span><span>Holistic Wellness</span></span>
       Rooted in tradition. Personalized to you.
     </p>
     <a href="jrt-booking-mockup.html" class="hero-cta">Book Your Session</a>
