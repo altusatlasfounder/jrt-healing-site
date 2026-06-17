@@ -335,12 +335,17 @@
     text-shadow: var(--hero-shadow-text);
   }
 
-  .hero-centered .hero-rule {
+  .hero-centered .hero-rule,
+  .hero-centered .hero-rule-lower {
     width: 60px;
     height: 2px;
     background: var(--gold);
     margin: 0 auto 28px;
     opacity: 0.6;
+  }
+  .hero-centered .hero-rule-lower {
+    display: block;
+    margin: 16px auto 12px;
   }
 
   .hero-centered .hero-desc {
@@ -1146,7 +1151,7 @@
       gap: 4px;
       border-bottom: 1px solid rgba(45,106,79,0.15);
       box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-      z-index: 100;
+      z-index: 1100;
     }
     .nav-links.open { display: flex; }
     .nav-links li { list-style: none; }
@@ -1314,7 +1319,7 @@
       text-shadow: 1px 2px 4px rgba(0,0,0,1), 0 0 12px rgba(0,0,0,1), 0 0 24px rgba(0,0,0,0.9), 0 0 48px rgba(0,0,0,0.7);
     }
     .hero-centered .hero-desc .services-line span + span::before { content: none; }
-    .hero-centered .hero-tagline { font-size: 28px; display: block; text-shadow: 1px 2px 4px rgba(0,0,0,1), 0 0 12px rgba(0,0,0,1), 0 0 24px rgba(0,0,0,0.9), 0 0 48px rgba(0,0,0,0.7); }
+    .hero-centered .hero-tagline { font-size: clamp(18px, 5vw, 28px); display: block; white-space: nowrap; text-shadow: 1px 2px 4px rgba(0,0,0,1), 0 0 12px rgba(0,0,0,1), 0 0 24px rgba(0,0,0,0.9), 0 0 48px rgba(0,0,0,0.7); }
     .hero-centered .hero-explore { margin-top: 28px; }
     .hero-centered .ghost-char { display: none; }
   }
@@ -1323,7 +1328,7 @@
     .hero-centered .hero-brand { font-size: 26px; letter-spacing: 5px; text-shadow: 1px 2px 4px rgba(0,0,0,1), 0 0 12px rgba(0,0,0,1), 0 0 24px rgba(0,0,0,0.9); }
     .hero-centered .hero-desc { font-size: 24px; text-shadow: 1px 2px 4px rgba(0,0,0,1), 0 0 12px rgba(0,0,0,1), 0 0 24px rgba(0,0,0,0.9); }
     .hero-centered .hero-desc .services-line { font-size: 24px; letter-spacing: 1px; text-shadow: 1px 2px 4px rgba(0,0,0,1), 0 0 12px rgba(0,0,0,1), 0 0 24px rgba(0,0,0,0.9); }
-    .hero-centered .hero-tagline { font-size: 24px; text-shadow: 1px 2px 4px rgba(0,0,0,1), 0 0 12px rgba(0,0,0,1), 0 0 24px rgba(0,0,0,0.9); }
+    .hero-centered .hero-tagline { font-size: clamp(16px, 4.5vw, 24px); white-space: nowrap; text-shadow: 1px 2px 4px rgba(0,0,0,1), 0 0 12px rgba(0,0,0,1), 0 0 24px rgba(0,0,0,0.9); }
     .hero-centered .hero-cta { padding: 14px 36px; font-size: 14px; }
     .hero-centered .center-content { padding: 0 20px 16px; }
     .hero-centered .hero-explore { margin-top: 24px; }
@@ -1621,6 +1626,7 @@
     <div class="hero-rule"></div>
     <p class="hero-desc">
       <span class="services-line"><span>Herbal Medicine</span><span>&amp;</span><span>Holistic Wellness</span></span>
+      <span class="hero-rule-lower"></span>
       <span class="hero-tagline">Rooted in tradition. Personalized to you.</span>
     </p>
     <a href="jrt-booking-mockup.html" class="hero-cta">Book Your Session</a>

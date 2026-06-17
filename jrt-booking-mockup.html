@@ -65,6 +65,23 @@
     transition: background 0.3s !important;
   }
   .nav-cta:hover { background: var(--primary-dark) !important; }
+  .nav-right { display: flex; align-items: center; gap: clamp(12px, 2.5vw, 32px); }
+  .cart-btn {
+    position: relative; cursor: pointer;
+    background: none; border: none;
+    font-size: 22px; color: var(--primary-dark);
+    padding: 6px; flex-shrink: 0;
+    text-decoration: none;
+  }
+  .cart-badge {
+    position: absolute; top: -4px; right: -6px;
+    background: var(--gold); color: white;
+    font-size: 10px; font-weight: 700;
+    width: 18px; height: 18px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .cart-badge.visible { opacity: 1; }
 
   .booking-hero {
     margin-top: 72px;
@@ -347,19 +364,25 @@
       <div class="nav-address">4853 S Sheridan Rd #604, Tulsa, OK 74135</div>
     </div>
   </a>
-  <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="index.html#services">Services</a></li>
-    <li><a href="index.html#our-name">Our Story</a></li>
-    <li><a href="index.html#about-us">About</a></li>
-    <li><a href="index.html#testimonials">Reviews</a></li>
-    <li><a href="jrt-store-mockup.html">Shop Herbs</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
-    <li><a href="jrt-booking-mockup.html" class="nav-cta">Book a Session</a></li>
-  </ul>
+  <div class="nav-right">
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#our-name">Our Story</a></li>
+      <li><a href="index.html#about-us">About</a></li>
+      <li><a href="index.html#testimonials">Reviews</a></li>
+      <li><a href="jrt-store-mockup.html">Shop Herbs</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="jrt-booking-mockup.html" class="nav-cta">Book a Session</a></li>
+    </ul>
+    <a href="jrt-store-mockup.html" class="cart-btn" aria-label="Shopping cart">
+      &#128722;
+      <span class="cart-badge" id="cartBadge">0</span>
+    </a>
+  </div>
 </nav>
 <script>
 document.addEventListener('click', function(e) {
@@ -625,6 +648,17 @@ document.addEventListener('click', function(e) {
   }
 })();
 </script>
+<script>
+/* Cart badge — reads store cart from localStorage */
+(function(){
+    var cart = JSON.parse(localStorage.getItem('jrt-cart') || '[]');
+    var total = cart.reduce(function(s, c){ return s + c.qty; }, 0);
+    var badge = document.getElementById('cartBadge');
+    if (badge && total > 0) {
+      badge.textContent = total;
+      badge.classList.add('visible');
+    }
+})();
+</script>
 </body>
 </html>
-
