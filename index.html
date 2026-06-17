@@ -351,7 +351,15 @@
     justify-content: center;
   }
   .hero-centered .hero-desc .services-line span + span::before {
-    content: ' · ';
+    content: none;
+  }
+  .hero-centered .hero-desc .services-line span {
+    margin: 0 8px;
+  }
+  .hero-centered .hero-tagline {
+    display: block;
+    font-size: 24px;
+    margin-top: 8px;
   }
 
   .hero-centered .hero-cta {
@@ -1194,8 +1202,8 @@
     .testimonial-card { padding: 24px; }
 
     /* Services / cards */
-    .services { padding: 36px 16px; }
-    .section-header { margin-bottom: 36px; }
+    .services { padding: 20px 16px 36px; }
+    .section-header { margin-bottom: 28px; }
     .section-header h2 { font-size: 24px; }
     .services-grid { grid-template-columns: 1fr; gap: 16px; max-width: 400px; }
     .service-card { min-height: 340px; }
@@ -1273,24 +1281,28 @@
     .hero-centered .center-content {
       padding: 0 28px 20px;
       background: none;
-      align-self: center;
+      align-self: flex-start;
+      margin-top: 80px;
     }
     .hero-centered .hero-chinese { font-size: 48px; letter-spacing: 8px; margin-bottom: 0; }
     .hero-centered .hero-brand { font-size: 20px; letter-spacing: 4px; margin-bottom: 0; }
     .hero-centered .hero-rule { margin: 4px auto 8px; }
-    .hero-centered .hero-desc { font-size: 26px; margin-bottom: 20px; line-height: 1.6; }
+    .hero-centered .hero-desc { font-size: 18px; margin-bottom: 20px; line-height: 1.6; }
     .hero-centered .hero-desc .services-line {
-      font-size: 26px; letter-spacing: 1.5px; display: flex;
+      font-size: 32px; letter-spacing: 1.5px; display: flex;
       flex-direction: column; gap: 4px; margin-bottom: 10px; white-space: normal;
     }
+    .hero-centered .hero-desc .services-line span + span::before { content: none; }
+    .hero-centered .hero-tagline { font-size: 16px; letter-spacing: 1px; opacity: 0.85; }
     .hero-centered .hero-explore { margin-top: 28px; }
     .hero-centered .ghost-char { display: none; }
   }
   @media (max-width: 480px) {
     .hero-centered .hero-chinese { font-size: 42px; letter-spacing: 6px; }
     .hero-centered .hero-brand { font-size: 18px; letter-spacing: 3px; }
-    .hero-centered .hero-desc { font-size: 24px; }
-    .hero-centered .hero-desc .services-line { font-size: 22px; letter-spacing: 1px; }
+    .hero-centered .hero-desc { font-size: 16px; }
+    .hero-centered .hero-desc .services-line { font-size: 28px; letter-spacing: 1px; }
+    .hero-centered .hero-tagline { font-size: 14px; }
     .hero-centered .hero-cta { padding: 14px 36px; font-size: 14px; }
     .hero-centered .center-content { padding: 0 20px 16px; }
     .hero-centered .hero-explore { margin-top: 24px; }
@@ -1421,11 +1433,16 @@
   /* ── Refined mobile section spacing ── */
   @media (max-width: 768px) {
     .trust-bar { margin-bottom: 0; }
-    .services { padding: 56px 16px; }
-    #about-us { padding: 36px 0 !important; }
+    .services { padding: 20px 16px 36px; }
+    .section-divider { padding: 0; }
+    .divider-icon { padding: 8px 0; font-size: 22px; }
+    #about-us { padding: 20px 0 !important; }
     .about-us { padding: 0 20px !important; gap: 28px !important; }
-    .about { padding: 56px 20px !important; }
-    .cta-section { padding: 56px 20px; }
+    .about { padding: 24px 20px !important; }
+    .cta-section { padding: 32px 20px; }
+    .name-meaning-section { padding: 20px 20px !important; }
+    .testimonials-section { padding: 20px 20px !important; }
+    #contact { padding: 20px 0 !important; }
   }
 
   /* ── Card grid gap refinement ── */
@@ -1581,7 +1598,7 @@
     <div class="hero-rule"></div>
     <p class="hero-desc">
       <span class="services-line"><span>Acupuncture</span><span>Herbal Medicine</span><span>Holistic Wellness</span></span>
-      Rooted in tradition. Personalized to you.
+      <span class="hero-tagline">Rooted in tradition. Personalized to you.</span>
     </p>
     <a href="jrt-booking-mockup.html" class="hero-cta">Book Your Session</a>
     <a href="#services" class="hero-explore">Explore Services →</a>
@@ -2103,3 +2120,4 @@
 
 </body>
 </html>
+
