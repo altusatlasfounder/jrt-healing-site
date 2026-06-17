@@ -89,6 +89,7 @@
     margin-top: 5px;
     line-height: 1;
   }
+  .nav-right { display: flex; align-items: center; gap: clamp(12px, 2.5vw, 32px); }
   .nav-links {
     display: flex; align-items: center; gap: clamp(12px, 2.5vw, 32px);
     list-style: none;
@@ -178,8 +179,9 @@
     position: relative;
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    padding-top: 8vh;
     overflow: hidden;
     background:
       linear-gradient(to top right, rgba(201,169,110,0.28) 0%, rgba(201,169,110,0.18) 20%, rgba(201,169,110,0.08) 40%, rgba(201,169,110,0.02) 55%, transparent 70%),
@@ -319,7 +321,7 @@
     letter-spacing: 10px;
     text-transform: uppercase;
     margin-bottom: 28px;
-    text-shadow: var(--hero-shadow-text);
+    text-shadow: var(--hero-shadow-chinese);
   }
 
   .hero-centered .hero-rule {
@@ -337,7 +339,7 @@
     line-height: 1.6;
     color: rgba(254,252,246,0.88);
     margin-bottom: 72px;
-    text-shadow: var(--hero-shadow-text);
+    text-shadow: var(--hero-shadow-chinese);
   }
   .hero-centered .hero-desc .services-line {
     color: var(--gold-light);
@@ -348,7 +350,7 @@
     gap: 0;
     margin-bottom: 10px;
     white-space: nowrap;
-    text-shadow: var(--hero-shadow-text);
+    text-shadow: var(--hero-shadow-chinese);
     justify-content: center;
   }
   .hero-centered .hero-desc .services-line span + span::before {
@@ -361,7 +363,7 @@
     display: block;
     font-size: 36px;
     margin-top: 8px;
-    text-shadow: var(--hero-shadow-text);
+    text-shadow: var(--hero-shadow-chinese);
   }
 
   .hero-centered .hero-cta {
@@ -1536,23 +1538,25 @@
       <div class="nav-address">4853 S Sheridan Rd #604, Tulsa, OK 74135</div>
     </div>
   </a>
-  <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#our-name">Our Story</a></li>
-    <li><a href="#about-us">About</a></li>
-    <li><a href="#testimonials">Reviews</a></li>
-    <li><a href="jrt-store-mockup.html">Shop Herbs</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="jrt-booking-mockup.html" class="nav-cta">Book a Session</a></li>
-  </ul>
-  <a href="jrt-store-mockup.html" class="cart-btn" aria-label="Shopping cart">
-    &#128722;
-    <span class="cart-badge" id="cartBadge">0</span>
-  </a>
+  <div class="nav-right">
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#our-name">Our Story</a></li>
+      <li><a href="#about-us">About</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="jrt-store-mockup.html">Shop Herbs</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="jrt-booking-mockup.html" class="nav-cta">Book a Session</a></li>
+    </ul>
+    <a href="jrt-store-mockup.html" class="cart-btn" aria-label="Shopping cart">
+      &#128722;
+      <span class="cart-badge" id="cartBadge">0</span>
+    </a>
+  </div>
 </nav>
 
 <!-- ★ TRUST BAR — green stats, first thing below nav ★ -->
