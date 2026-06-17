@@ -1299,26 +1299,28 @@
       background: none;
       align-self: flex-start;
       margin-top: 80px;
+      transform: none;
     }
-    .hero-centered .hero-chinese { font-size: 80px; letter-spacing: 10px; margin-bottom: 4px; }
-    .hero-centered .hero-brand { font-size: 30px; letter-spacing: 6px; margin-bottom: 12px; }
+    .hero-centered .hero-chinese { font-size: 80px; letter-spacing: 10px; margin-bottom: 4px; text-shadow: var(--hero-shadow-chinese); }
+    .hero-centered .hero-brand { font-size: 30px; letter-spacing: 6px; margin-bottom: 12px; text-shadow: var(--hero-shadow-chinese); }
     .hero-centered .hero-rule { margin: 4px auto 12px; }
-    .hero-centered .hero-desc { font-size: 14px; margin-bottom: 20px; line-height: 1.6; }
+    .hero-centered .hero-desc { font-size: 14px; margin-bottom: 20px; line-height: 1.6; text-shadow: var(--hero-shadow-chinese); }
     .hero-centered .hero-desc .services-line {
       font-size: 24px; letter-spacing: 1.5px; display: flex;
       flex-direction: column; gap: 4px; margin-bottom: 10px; white-space: normal;
+      text-shadow: var(--hero-shadow-chinese);
     }
     .hero-centered .hero-desc .services-line span + span::before { content: none; }
-    .hero-centered .hero-tagline { font-size: 16px; display: block; }
+    .hero-centered .hero-tagline { font-size: 16px; display: block; text-shadow: var(--hero-shadow-chinese); }
     .hero-centered .hero-explore { margin-top: 28px; }
     .hero-centered .ghost-char { display: none; }
   }
   @media (max-width: 480px) {
-    .hero-centered .hero-chinese { font-size: 72px; letter-spacing: 8px; }
-    .hero-centered .hero-brand { font-size: 26px; letter-spacing: 5px; }
-    .hero-centered .hero-desc { font-size: 13px; }
-    .hero-centered .hero-desc .services-line { font-size: 20px; letter-spacing: 1px; }
-    .hero-centered .hero-tagline { font-size: 14px; }
+    .hero-centered .hero-chinese { font-size: 72px; letter-spacing: 8px; text-shadow: var(--hero-shadow-chinese); }
+    .hero-centered .hero-brand { font-size: 26px; letter-spacing: 5px; text-shadow: var(--hero-shadow-chinese); }
+    .hero-centered .hero-desc { font-size: 13px; text-shadow: var(--hero-shadow-chinese); }
+    .hero-centered .hero-desc .services-line { font-size: 20px; letter-spacing: 1px; text-shadow: var(--hero-shadow-chinese); }
+    .hero-centered .hero-tagline { font-size: 14px; text-shadow: var(--hero-shadow-chinese); }
     .hero-centered .hero-cta { padding: 14px 36px; font-size: 14px; }
     .hero-centered .center-content { padding: 0 20px 16px; }
     .hero-centered .hero-explore { margin-top: 24px; }
@@ -1615,7 +1617,7 @@
     <div class="hero-brand">Ji Ren Tang</div>
     <div class="hero-rule"></div>
     <p class="hero-desc">
-      <span class="services-line"><span>Herbal Medicine</span><span>and Holistic Wellness</span></span>
+      <span class="services-line"><span>Herbal Medicine</span><span>&amp;</span><span>Holistic Wellness</span></span>
       <span class="hero-tagline">Rooted in tradition. Personalized to you.</span>
     </p>
     <a href="jrt-booking-mockup.html" class="hero-cta">Book Your Session</a>
